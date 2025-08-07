@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/avatar.jpg">
 <meta property="article:published_time" content="2025-08-07T12:23:36.000Z">
-<meta property="article:modified_time" content="2025-08-07T12:34:49.972Z">
+<meta property="article:modified_time" content="2025-08-07T13:01:38.413Z">
 <meta property="article:author" content="奕阡">
 <meta property="article:tag" content="系统定制">
 <meta property="article:tag" content="编译">
@@ -50,7 +50,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg"},"dateCreated":"2025-08-07T20:23:36+08:00","dateModified":"2025-08-07T20:34:49+08:00","datePublished":"2025-08-07T20:23:36+08:00","description":"","headline":"采用GitHub Actions,编译openwrt系统镜像（ophub库）","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2025/08/07/%E9%87%87%E7%94%A8GitHub-Actions-%E7%BC%96%E8%AF%91openwrt%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%EF%BC%88ophub%E5%BA%93%EF%BC%89/"},"publisher":{"@type":"Organization","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg","logo":{"@type":"ImageObject","url":"/images/avatar.jpg"}},"url":"http://example.com/2025/08/07/%E9%87%87%E7%94%A8GitHub-Actions-%E7%BC%96%E8%AF%91openwrt%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%EF%BC%88ophub%E5%BA%93%EF%BC%89/","keywords":"系统定制, 编译","thumbnailUrl":"source/images/创建 GitHub Actions 教程图.png","image":1}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg"},"dateCreated":"2025-08-07T20:23:36+08:00","dateModified":"2025-08-07T21:01:38+08:00","datePublished":"2025-08-07T20:23:36+08:00","description":"","headline":"采用GitHub Actions,编译openwrt系统镜像（ophub库）","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2025/08/07/%E9%87%87%E7%94%A8GitHub-Actions-%E7%BC%96%E8%AF%91openwrt%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%EF%BC%88ophub%E5%BA%93%EF%BC%89/"},"publisher":{"@type":"Organization","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg","logo":{"@type":"ImageObject","url":"/images/avatar.jpg"}},"url":"http://example.com/2025/08/07/%E9%87%87%E7%94%A8GitHub-Actions-%E7%BC%96%E8%AF%91openwrt%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%EF%BC%88ophub%E5%BA%93%EF%BC%89/","keywords":"系统定制, 编译","thumbnailUrl":"source/images/GitHub Actions.jpg","image":1}</script>
   
 </head>
 <body>
@@ -81,7 +81,7 @@
   <span class="sep"></span>
   <a class="cap breadcrumb" href="/2025/08/07/%E9%87%87%E7%94%A8GitHub-Actions-%E7%BC%96%E8%AF%91openwrt%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%EF%BC%88ophub%E5%BA%93%EF%BC%89/">采用GitHub Actions,编译openwrt系统镜像（ophub库）</a>
   </div>
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-08-07T12:23:36.000Z">2025-08-07</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-08-07T12:34:49.972Z">2025-08-07</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-08-07T12:23:36.000Z">2025-08-07</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-08-07T13:01:38.413Z">2025-08-07</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -93,11 +93,54 @@
     
   </div>
   </div><article class="md-text content"><p>欢迎来到系统定制的奇妙世界！对于许多Linux爱好者和开发者来说，编译自己的内核是迈向“专家”之路的成人礼。本文将是一份详尽的指南，带你一步步完成Linux内核的下载、配置、编译和安装全过程。</p>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>在开始之前，请确保你已经准备好以下软硬件环境。</p>
-<h3 id="硬件与软件"><a href="#硬件与软件" class="headerlink" title="硬件与软件"></a>硬件与软件</h3><ul>
-<li>一台拥有至少 4 核 CPU、8GB 内存、50GB 硬盘空间的电脑（推荐使用物理机或高性能虚拟机）。</li>
-<li>一个主流的 Linux 发行版，如 Ubuntu 22.04 LTS 或 Debian 12。</li>
-</ul>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>GitHub账号，且已经设置隐私变量 GITHUB_TOKEN（<a target="_blank" rel="noopener" href="https://docs.github.com/zh/actions/tutorials/authenticate-with-github_token#about-the-github_token-secret%EF%BC%89%E7%82%B9%E5%87%BB%E6%9F%A5%E7%9C%8B">https://docs.github.com/zh/actions/tutorials/authenticate-with-github_token#about-the-github_token-secret）点击查看</a></p>
+<h3 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h3><p>能打开GitHub就行</p>
+<h2 id="1-Fork-仓库并设置工作流权限"><a href="#1-Fork-仓库并设置工作流权限" class="headerlink" title="1. Fork 仓库并设置工作流权限"></a>1. Fork 仓库并设置工作流权限</h2><p> 打开仓库链接 <a target="_blank" rel="noopener" href="https://github.com/ophub/amlogic-s9xxx-openwrt">https://github.com/ophub/amlogic-s9xxx-openwrt</a> ，点击右上的 Fork 按钮，复制一份仓库代码到自己的账户下，稍等几秒钟，提示 Fork 完成后，到自己的账户下访问自己仓库里的 amlogic-s9xxx-openwrt 。在右上角的 <code>Settings</code> &gt; <code>Secrets</code> &gt; <code>Actions</code> &gt; <code>General</code> &gt; <code>Workflow permissions</code> 下选择 <code>Read and write permissions</code> 并保存。图示如下：</p>
+<div style="width:100%;margin-top:40px;margin:5px;">
+<img src=https://user-images.githubusercontent.com/68696949/109418568-0eb2f880-7a04-11eb-81c9-194e32382998.jpg width="300" />
+<img src=https://user-images.githubusercontent.com/68696949/163203032-f044c63f-d113-4076-bf94-41f86c7dd0ce.png width="300" />
+<img src=https://user-images.githubusercontent.com/68696949/167585338-841d3b05-8d98-4d73-ba72-475aad4a95a9.png width="300" />
+</div>
+
+<h2 id="2-个性化-OpenWrt-固件定制文件说明"><a href="#2-个性化-OpenWrt-固件定制文件说明" class="headerlink" title="2. 个性化 OpenWrt 固件定制文件说明"></a>2. 个性化 OpenWrt 固件定制文件说明</h2><p>经过前面 3 步准备工作，现在开始进行个性化固件定制吧。在 <a href="../config/lede-master">config&#x2F;lede-master</a> 目录下的 3 个是进行 OpenWrt 固件个性化定制的文件。</p>
+<h3 id="2-1-config-文件说明"><a href="#2-1-config-文件说明" class="headerlink" title="2.1 .config 文件说明"></a>2.1 .config 文件说明</h3><p>这个文件是 OpenWrt 软件包个性化定制的核心文件，包含了全部的配置信息，文件里面每一行代码代表一项个性化配置选项。</p>
+<h4 id="2-1-1-首先让固件支持本国语言"><a href="#2-1-1-首先让固件支持本国语言" class="headerlink" title="2.1.1 首先让固件支持本国语言"></a>2.1.1 首先让固件支持本国语言</h4><p>在# National language packs, luci-i18n-base: 以法国为例，启用法语支持，就把</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">CONFIG_PACKAGE_luci-i18n-base-fr is not <span class="built_in">set</span></span></span><br></pre></td></tr></table></figure>
+
+<p>修改为</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONFIG_PACKAGE_luci-i18n-base-fr=y</span><br></pre></td></tr></table></figure>
+
+<p>.config 文件里的个性化定制全部这样操作即可。把自己不需要的项目，在行首填写 <code>#</code> ，在行尾把 <code>=y</code> 改为 <code>is not set</code> 。对于自己需要的项目，去掉行首的 <code>#</code> ，结尾把 <code>is not set</code> 改为 <code>=y</code></p>
+<h4 id="2-1-2-选择个性化软件包"><a href="#2-1-2-选择个性化软件包" class="headerlink" title="2.1.2 选择个性化软件包"></a>2.1.2 选择个性化软件包</h4><p>在 <code>#LuCI-app:</code> 启用和删除默认软件包的做法和上面一样,这次我们删除默认软件包里的 <code>luci-app-zerotier</code> 这个插件，就把</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONFIG_PACKAGE_luci-app-zerotier=y</span><br></pre></td></tr></table></figure>
+<p>修改为</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">CONFIG_PACKAGE_luci-app-zerotier is not <span class="built_in">set</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-DIY脚本操作-diy-part1-sh-和-diy-part2-sh"><a href="#2-2-DIY脚本操作-diy-part1-sh-和-diy-part2-sh" class="headerlink" title="2.2 DIY脚本操作: diy-part1.sh 和 diy-part2.sh"></a>2.2 DIY脚本操作: diy-part1.sh 和 diy-part2.sh</h3><p>脚本 diy-part1.sh 和 diy-part2.sh ，它们分别在更新与安装 feeds 的前后执行，当我们引入 OpenWrt 的源码库进行个性化固件编译时，有时想改写源码库中的部分代码，或者增加一些第三方提供的软件包，删除或者替换源码库中的一些软件包，比如修改默认 IP、主机名、主题、添加 &#x2F; 删除软件包等操作，这些对源码库的修改指令可以写到这 2 个脚本中。我们以 coolsnowwolf 提供的 OpenWrt 源码库作为编译对象，举几个例子。</p>
+<p>我们以下的操作都以这个源码库为基础: <a target="_blank" rel="noopener" href="https://github.com/coolsnowwolf/lede">https://github.com/coolsnowwolf/lede</a></p>
+<h4 id="举例1，添加第三方软件包"><a href="#举例1，添加第三方软件包" class="headerlink" title="举例1，添加第三方软件包"></a>举例1，添加第三方软件包</h4><p>第一步，在 diy-part2.sh 里加入以下代码：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/jerrykuku/luci-app-ttnode.git package/lean/luci-app-ttnode</span><br></pre></td></tr></table></figure>
+
+<p>第二步，到 .config 文件里添加这个第三方软件包的启用代码：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONFIG_PACKAGE_luci-app-ttnode=y</span><br></pre></td></tr></table></figure>
+
+<p>这样就完成了第三方软件包的集成，扩充了当前源码库中没有的软件包。</p>
+<h4 id="举例2，用第三方软件包替换当前源码库中的已有的同名软件包"><a href="#举例2，用第三方软件包替换当前源码库中的已有的同名软件包" class="headerlink" title="举例2，用第三方软件包替换当前源码库中的已有的同名软件包"></a>举例2，用第三方软件包替换当前源码库中的已有的同名软件包</h4><p>第一步，在 diy-part2.sh 里加入以下代码：用第一行代码先删除源码库中原来的软件，再用第二行代码引入第三方的同名软件包。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -rf package/lean/luci-theme-argon</span><br><span class="line">git clone https://github.com/jerrykuku/luci-theme-argon.git package/lean/luci-theme-argon</span><br></pre></td></tr></table></figure>
+
+<p>第二步，到 .config 文件里添加第三方软件包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONFIG_PACKAGE_luci-theme-argon=y</span><br></pre></td></tr></table></figure>
+
+<p>这样就实现了使用第三方软件包替换当前源码库中的已有的同名软件包。</p>
+<h4 id="举例3，通过修改源码库中的代码来实现某些需求"><a href="#举例3，通过修改源码库中的代码来实现某些需求" class="headerlink" title="举例3，通过修改源码库中的代码来实现某些需求"></a>举例3，通过修改源码库中的代码来实现某些需求</h4><p>我们增加 <code>luci-app-cpufreq</code> 对 <code>aarch64</code> 的支持，以便在我们的固件中使用（有些修改要谨慎，你必须知道你在做什么）。</p>
+<p>源文件地址： <a target="_blank" rel="noopener" href="https://github.com/coolsnowwolf/luci/blob/master/applications/luci-app-cpufreq/Makefile">luci-app-cpufreq&#x2F;Makefile</a> 。修改代码加入对 aarch64 的支持：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#x27;s/LUCI_DEPENDS.*/LUCI_DEPENDS:=\@\(arm\|\|aarch64\)/g&#x27; package/lean/luci-app-cpufreq/Makefile</span><br></pre></td></tr></table></figure>
+
+<p>这样就实现了对源码的修改。通过 diy-part1.sh 和 diy-part2.sh 这两个脚本，我们添加了一些操作命令，让编译的固件更符合我们的个性化需求。</p>
+<h2 id="5-开始编译"><a href="#5-开始编译" class="headerlink" title="5. 开始编译"></a>5. 开始编译</h2><p>在自己仓库的导航栏中，点击 Actions 按钮，再依次点击 Build OpenWrt system image &gt; Run workflow &gt; Run workflow </p>
+<p>1.选择自己所需的源 lede&#x2F;官方&#x2F;immortalwrt  自己改的哪个config就选谁的<br>2.选择自己的板子<br>3.选择内核版本（默认自动选择最新的）<br>4.设置镜像为保存<br>5.镜像签名，改不改都行</p>
+<p>开始编译，等待大约 3 个小时，全部流程都结束后就完成编译了。</p>
+<p>编译完成直接而去release下载就行了</p>
 </article>
 
 
