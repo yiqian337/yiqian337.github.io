@@ -20,16 +20,16 @@
   <title>采用GitHub Actions,编译openwrt系统镜像（ophub库） - 奕阡</title>
 
   
-    <meta name="description" content="本文是一份详细的指南，将带你一步步完成openwrt的下载、配置、编译和安装，让你拥有一个完全由自己定制的系统。">
+    <meta name="description" content="本文是一份简易的编译指南，将带你一步步完成openwrt编译，让你拥有一个完全由自己定制的系统。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="采用GitHub Actions,编译openwrt系统镜像（ophub库）">
 <meta property="og:url" content="http://example.com/2025/08/07/%E9%87%87%E7%94%A8GitHub-Actions-%E7%BC%96%E8%AF%91openwrt%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%EF%BC%88ophub%E5%BA%93%EF%BC%89/">
 <meta property="og:site_name" content="奕阡">
-<meta property="og:description" content="本文是一份详细的指南，将带你一步步完成openwrt的下载、配置、编译和安装，让你拥有一个完全由自己定制的系统。">
+<meta property="og:description" content="本文是一份简易的编译指南，将带你一步步完成openwrt编译，让你拥有一个完全由自己定制的系统。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/avatar.jpg">
 <meta property="article:published_time" content="2025-08-07T12:23:36.000Z">
-<meta property="article:modified_time" content="2025-08-07T13:33:47.132Z">
+<meta property="article:modified_time" content="2025-08-08T12:48:24.238Z">
 <meta property="article:author" content="奕阡">
 <meta property="article:tag" content="系统定制">
 <meta property="article:tag" content="编译">
@@ -50,7 +50,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg"},"dateCreated":"2025-08-07T20:23:36+08:00","dateModified":"2025-08-07T21:33:47+08:00","datePublished":"2025-08-07T20:23:36+08:00","description":"","headline":"采用GitHub Actions,编译openwrt系统镜像（ophub库）","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2025/08/07/%E9%87%87%E7%94%A8GitHub-Actions-%E7%BC%96%E8%AF%91openwrt%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%EF%BC%88ophub%E5%BA%93%EF%BC%89/"},"publisher":{"@type":"Organization","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg","logo":{"@type":"ImageObject","url":"/images/avatar.jpg"}},"url":"http://example.com/2025/08/07/%E9%87%87%E7%94%A8GitHub-Actions-%E7%BC%96%E8%AF%91openwrt%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%EF%BC%88ophub%E5%BA%93%EF%BC%89/","keywords":"系统定制, 编译","thumbnailUrl":"https://raw.githubusercontent.com/yiqian337/photos/refs/heads/main/JPG/GitHub%20Actions.jpg","image":1}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg"},"dateCreated":"2025-08-07T20:23:36+08:00","dateModified":"2025-08-08T20:48:24+08:00","datePublished":"2025-08-07T20:23:36+08:00","description":"","headline":"采用GitHub Actions,编译openwrt系统镜像（ophub库）","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2025/08/07/%E9%87%87%E7%94%A8GitHub-Actions-%E7%BC%96%E8%AF%91openwrt%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%EF%BC%88ophub%E5%BA%93%EF%BC%89/"},"publisher":{"@type":"Organization","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg","logo":{"@type":"ImageObject","url":"/images/avatar.jpg"}},"url":"http://example.com/2025/08/07/%E9%87%87%E7%94%A8GitHub-Actions-%E7%BC%96%E8%AF%91openwrt%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%EF%BC%88ophub%E5%BA%93%EF%BC%89/","keywords":"系统定制, 编译","thumbnailUrl":"https://raw.githubusercontent.com/yiqian337/photos/refs/heads/main/JPG/GitHub%20Actions.jpg","image":1}</script>
   
 </head>
 <body>
@@ -81,7 +81,7 @@
   <span class="sep"></span>
   <a class="cap breadcrumb" href="/2025/08/07/%E9%87%87%E7%94%A8GitHub-Actions-%E7%BC%96%E8%AF%91openwrt%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%EF%BC%88ophub%E5%BA%93%EF%BC%89/">采用GitHub Actions,编译openwrt系统镜像（ophub库）</a>
   </div>
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-08-07T12:23:36.000Z">2025-08-07</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-08-07T13:33:47.132Z">2025-08-07</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-08-07T12:23:36.000Z">2025-08-07</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-08-08T12:48:24.238Z">2025-08-08</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -92,10 +92,9 @@
     </div>
     
   </div>
-  </div><article class="md-text content"><p>欢迎来到系统定制的奇妙世界！对于许多Linux爱好者和开发者来说，编译自己的内核是迈向“专家”之路的成人礼。本文将是一份详尽的指南，带你一步步完成Linux内核的下载、配置、编译和安装全过程。</p>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>GitHub账号，且已经设置隐私变量 GITHUB_TOKEN（<a target="_blank" rel="noopener" href="https://docs.github.com/zh/actions/tutorials/authenticate-with-github_token#about-the-github_token-secret%EF%BC%89%E7%82%B9%E5%87%BB%E6%9F%A5%E7%9C%8B">https://docs.github.com/zh/actions/tutorials/authenticate-with-github_token#about-the-github_token-secret）点击查看</a></p>
-<h3 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h3><p>能打开GitHub就行</p>
-<h2 id="1-Fork-仓库并设置工作流权限"><a href="#1-Fork-仓库并设置工作流权限" class="headerlink" title="1. Fork 仓库并设置工作流权限"></a>1. Fork 仓库并设置工作流权限</h2><p> 打开仓库链接 <a target="_blank" rel="noopener" href="https://github.com/ophub/amlogic-s9xxx-openwrt">https://github.com/ophub/amlogic-s9xxx-openwrt</a> ，点击右上的 Fork 按钮，复制一份仓库代码到自己的账户下，稍等几秒钟，提示 Fork 完成后，到自己的账户下访问自己仓库里的 amlogic-s9xxx-openwrt 。在右上角的 <code>Settings</code> &gt; <code>Secrets</code> &gt; <code>Actions</code> &gt; <code>General</code> &gt; <code>Workflow permissions</code> 下选择 <code>Read and write permissions</code> 并保存。图示如下：</p>
+  </div><article class="md-text content"><p>欢迎来到openwrt系统定制简易教程！本教程仅可用于fine3399板子，且此文字教程大部分为复制粘贴于ophub，练手的第一篇文章。</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>拥有一个GitHub账号（不会百度），且已经设置隐私变量 GITHUB_TOKEN<a target="_blank" rel="noopener" href="https://docs.github.com/zh/actions/tutorials/authenticate-with-github_token#about-the-github_token-secret">点击这里</a></p>
+<h2 id="正式教程"><a href="#正式教程" class="headerlink" title="正式教程"></a>正式教程</h2><h2 id="1-Fork-仓库并设置工作流权限"><a href="#1-Fork-仓库并设置工作流权限" class="headerlink" title="1. Fork 仓库并设置工作流权限"></a>1. Fork 仓库并设置工作流权限</h2><p> 打开仓库链接 <a target="_blank" rel="noopener" href="https://github.com/ophub/amlogic-s9xxx-openwrt">https://github.com/ophub/amlogic-s9xxx-openwrt</a> ，点击右上的 Fork 按钮，复制一份仓库代码到自己的账户下，稍等几秒钟，提示 Fork 完成后，到自己的账户下访问自己仓库里的 amlogic-s9xxx-openwrt 。在右上角的 <code>Settings</code> &gt; <code>Secrets</code> &gt; <code>Actions</code> &gt; <code>General</code> &gt; <code>Workflow permissions</code> 下选择 <code>Read and write permissions</code> 并保存。图示如下：</p>
 <div style="width:100%;margin-top:40px;margin:5px;">
 <img src=https://user-images.githubusercontent.com/68696949/109418568-0eb2f880-7a04-11eb-81c9-194e32382998.jpg width="300" />
 <img src=https://user-images.githubusercontent.com/68696949/163203032-f044c63f-d113-4076-bf94-41f86c7dd0ce.png width="300" />
@@ -138,9 +137,14 @@
 
 <p>这样就实现了对源码的修改。通过 diy-part1.sh 和 diy-part2.sh 这两个脚本，我们添加了一些操作命令，让编译的固件更符合我们的个性化需求。</p>
 <h2 id="5-开始编译"><a href="#5-开始编译" class="headerlink" title="5. 开始编译"></a>5. 开始编译</h2><p>在自己仓库的导航栏中，点击 Actions 按钮，再依次点击 Build OpenWrt system image &gt; Run workflow &gt; Run workflow </p>
-<p>1.选择自己所需的源 lede&#x2F;官方&#x2F;immortalwrt  自己改的哪个config就选谁的<br>2.选择自己的板子<br>3.选择内核版本（默认自动选择最新的）<br>4.设置镜像为保存<br>5.镜像签名，改不改都行</p>
-<p>开始编译，等待大约 3 个小时，全部流程都结束后就完成编译了。</p>
-<p>编译完成直接而去release下载就行了</p>
+<p>1.选择自己所需的源lede&#x2F;官方&#x2F;immortalwrt自己改的谁的config就选谁的</p>
+<p>2.选择自己的板子</p>
+<p>3.选择内核版本（默认自动选择最新的）</p>
+<p>4.设置镜像为保存</p>
+<p>5.镜像签名，改不改都行</p>
+<p>开始编译（编译采用github的服务器不用一直看着，报错会有提示的），等待大约 3 个小时，全部流程都结束后就完成编译了。</p>
+<p>编译完成直接而去release下载就行了。</p>
+<p>目前先写这么多吧，还是很简单的。</p>
 </article>
 
 
