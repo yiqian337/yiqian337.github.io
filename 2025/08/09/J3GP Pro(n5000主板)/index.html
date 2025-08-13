@@ -20,16 +20,16 @@
   <title>J3GP Pro(n5000主板)问题及解决 - 奕阡</title>
 
   
-    <meta name="description" content="咸鱼淘到的n5000主板，问题多多，一部分解决办法 问题一：刷入linux系统开机半小时后，系统死机，按开机键不再管用需要断电再次开机！目前发现问题可能是此主板的BIOS对于ACPI功能没有优化，最优解为更新bios，由于本人目前没有重新编译bios的能力，找到一个替代解决办法:即通过修改内核启动参数来告诉Linux不要使用BIOS中那部分有缺陷的功能 方法：打开终端，输入 sudo nano &amp;">
+    <meta name="description" content="本文记录了在咸鱼上淘到的一块 N5000 主板所遇到的问题及其部分解决方法。 问题一：Linux 系统死机问题描述： 在刷入 Linux 系统后，电脑运行约半小时后会死机，此时按开机键也无效，必须断电才能重启。 初步排查与尝试： 原因分析： 这个问题可能源于主板 BIOS 对 ACPI 功能的优化不足。 解决方案： 最优解是更新 BIOS，但因缺乏重新编译 BIOS 的能力，作者尝试了修改内核启动">
 <meta property="og:type" content="article">
 <meta property="og:title" content="J3GP Pro(n5000主板)问题及解决">
 <meta property="og:url" content="http://example.com/2025/08/09/J3GP%20Pro(n5000%E4%B8%BB%E6%9D%BF)/">
 <meta property="og:site_name" content="奕阡">
-<meta property="og:description" content="咸鱼淘到的n5000主板，问题多多，一部分解决办法 问题一：刷入linux系统开机半小时后，系统死机，按开机键不再管用需要断电再次开机！目前发现问题可能是此主板的BIOS对于ACPI功能没有优化，最优解为更新bios，由于本人目前没有重新编译bios的能力，找到一个替代解决办法:即通过修改内核启动参数来告诉Linux不要使用BIOS中那部分有缺陷的功能 方法：打开终端，输入 sudo nano &amp;">
+<meta property="og:description" content="本文记录了在咸鱼上淘到的一块 N5000 主板所遇到的问题及其部分解决方法。 问题一：Linux 系统死机问题描述： 在刷入 Linux 系统后，电脑运行约半小时后会死机，此时按开机键也无效，必须断电才能重启。 初步排查与尝试： 原因分析： 这个问题可能源于主板 BIOS 对 ACPI 功能的优化不足。 解决方案： 最优解是更新 BIOS，但因缺乏重新编译 BIOS 的能力，作者尝试了修改内核启动">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/avatar.jpg">
 <meta property="article:published_time" content="2025-08-09T13:14:39.421Z">
-<meta property="article:modified_time" content="2025-08-10T13:43:10.491Z">
+<meta property="article:modified_time" content="2025-08-13T12:27:06.084Z">
 <meta property="article:author" content="奕阡">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/avatar.jpg">
@@ -48,7 +48,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg"},"dateCreated":"2025-08-09T21:14:39+08:00","dateModified":"2025-08-10T21:43:10+08:00","datePublished":"2025-08-09T21:14:39+08:00","description":"","headline":"J3GP Pro(n5000主板)问题及解决","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2025/08/09/J3GP%20Pro(n5000%E4%B8%BB%E6%9D%BF)/"},"publisher":{"@type":"Organization","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg","logo":{"@type":"ImageObject","url":"/images/avatar.jpg"}},"url":"http://example.com/2025/08/09/J3GP%20Pro(n5000%E4%B8%BB%E6%9D%BF)/","image":[]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg"},"dateCreated":"2025-08-09T21:14:39+08:00","dateModified":"2025-08-13T20:27:06+08:00","datePublished":"2025-08-09T21:14:39+08:00","description":"","headline":"J3GP Pro(n5000主板)问题及解决","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2025/08/09/J3GP%20Pro(n5000%E4%B8%BB%E6%9D%BF)/"},"publisher":{"@type":"Organization","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg","logo":{"@type":"ImageObject","url":"/images/avatar.jpg"}},"url":"http://example.com/2025/08/09/J3GP%20Pro(n5000%E4%B8%BB%E6%9D%BF)/","image":[]}</script>
   
 </head>
 <body>
@@ -67,7 +67,7 @@
 
 
 
-<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/08/09/J3GP%20Pro(n5000%E4%B8%BB%E6%9D%BF)/"><span class="title">J3GP Pro(n5000主板)问题及解决</span></a><a class="item title" href="/2025/08/05/%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%B5%B7%E5%9B%A0/"><span class="title">创建博客起因</span></a><a class="item title" href="/2025/08/07/%E9%87%87%E7%94%A8GitHub-Actions-%E7%BC%96%E8%AF%91openwrt%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%EF%BC%88ophub%E5%BA%93%EF%BC%89/"><span class="title">采用GitHub Actions,编译openwrt系统镜像（ophub库）</span></a></div></widget>
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/08/09/J3GP%20Pro(n5000%E4%B8%BB%E6%9D%BF)/"><span class="title">J3GP Pro(n5000主板)问题及解决</span></a><a class="item title" href="/2025/08/07/%E9%87%87%E7%94%A8GitHub-Actions-%E7%BC%96%E8%AF%91openwrt%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%EF%BC%88ophub%E5%BA%93%EF%BC%89/"><span class="title">采用GitHub Actions,编译openwrt系统镜像（ophub库）</span></a><a class="item title" href="/2025/08/05/%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%B5%B7%E5%9B%A0/"><span class="title">创建博客起因</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -80,7 +80,7 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">文章</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-08-09T13:14:39.421Z">2025-08-09</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-08-10T13:43:10.491Z">2025-08-10</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-08-09T13:14:39.421Z">2025-08-09</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-08-13T12:27:06.084Z">2025-08-13</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -91,19 +91,31 @@
     </div>
     
   </div>
-  </div><article class="md-text content"><p>咸鱼淘到的n5000主板，问题多多，一部分解决办法</p>
-<h3 id="问题一：刷入linux系统开机半小时后，系统死机，按开机键不再管用需要断电再次开机！"><a href="#问题一：刷入linux系统开机半小时后，系统死机，按开机键不再管用需要断电再次开机！" class="headerlink" title="问题一：刷入linux系统开机半小时后，系统死机，按开机键不再管用需要断电再次开机！"></a>问题一：刷入linux系统开机半小时后，系统死机，按开机键不再管用需要断电再次开机！</h3><p>目前发现问题可能是此主板的BIOS对于ACPI功能没有优化，最优解为更新bios，由于本人目前没有重新编译bios的能力，找到一个替代解决办法:即通过修改内核启动参数来告诉Linux不要使用BIOS中那部分有缺陷的功能</p>
-<p>方法：<br>打开终端，输入 sudo nano &#x2F;etc&#x2F;default&#x2F;grub 来编辑GRUB配置文件。</p>
-<p>找到以 GRUB_CMDLINE_LINUX_DEFAULT&#x3D; 开头的那一行。</p>
-<p>在引号内，添加我们下面将要尝试的参数。例如，原来是 quiet，可以改成 quiet intel_idle.max_cstate&#x3D;1</p>
+  </div><article class="md-text content"><p>本文记录了在咸鱼上淘到的一块 N5000 主板所遇到的问题及其部分解决方法。</p>
+<h3 id="问题一：Linux-系统死机"><a href="#问题一：Linux-系统死机" class="headerlink" title="问题一：Linux 系统死机"></a>问题一：Linux 系统死机</h3><p>问题描述： 在刷入 Linux 系统后，电脑运行约半小时后会死机，此时按开机键也无效，必须断电才能重启。</p>
+<p>初步排查与尝试：</p>
+<p>原因分析： 这个问题可能源于主板 BIOS 对 ACPI 功能的优化不足。</p>
+<p>解决方案： 最优解是更新 BIOS，但因缺乏重新编译 BIOS 的能力，作者尝试了修改内核启动参数的替代方案。此方法旨在告知 Linux 系统不使用 BIOS 中可能存在缺陷的功能。</p>
+<p>具体操作步骤：</p>
+<p>在终端输入 sudo nano &#x2F;etc&#x2F;default&#x2F;grub 编辑 GRUB 配置文件。</p>
+<p>找到 GRUB_CMDLINE_LINUX_DEFAULT&#x3D; 这一行。</p>
+<p>在引号内添加 intel_idle.max_cstate&#x3D;1 等参数。</p>
 <p>按 Ctrl + X 保存，按 Y 确认，再按 Enter 退出。</p>
-<p>非常重要的一步：在终端运行 sudo update-grub 来让配置生效。</p>
-<p>重启电脑，观察问题是否解决。</p>
-<p>测试采用12V1.5A电源仍然会关机。<br>测试采用12V2A电源1小时11分左右关机。<br>综上，改启动项目无效。目前没有更好的办法只能看看官方有没有可能更新适配linux的BIOS了（可能性不大）</p>
-<h3 id="问题二：linux插入msata硬盘，开不开机（Windows未发现这个问题）"><a href="#问题二：linux插入msata硬盘，开不开机（Windows未发现这个问题）" class="headerlink" title="问题二：linux插入msata硬盘，开不开机（Windows未发现这个问题）"></a>问题二：linux插入msata硬盘，开不开机（Windows未发现这个问题）</h3><p>可能是由于启动顺序的问题，由于没有rtc电池，更改BIOS不会保存，所以改了bios也没有用。<br>目前这个问题不稳定，有时能开机，有时开不开，没找到原因。<br>解决办法：<br>目前采用插入usb3.0拓展坞即可正常开机：原理不太清楚，应该可以采用诱骗原理开机</p>
-<h3 id="问题三：开机短接点焊盘掉了"><a href="#问题三：开机短接点焊盘掉了" class="headerlink" title="问题三：开机短接点焊盘掉了"></a>问题三：开机短接点焊盘掉了</h3><p>采用键盘接口接地及其旁边针脚短接，同样可以开机。</p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>目前安装了Windows server CPU待机功耗3w左右，整机未测。</p>
-<p>更新时间：2025-08-10<br>创建时间：2025-08-09</p>
+<p>在终端运行 sudo update-grub 使配置生效。</p>
+<p>重启电脑并观察问题是否解决。</p>
+<p>结果： 经过测试，使用 12V 1.5A 电源仍会出现关机情况。使用 12V 2A 电源时，电脑在大约 1 小时 11 分钟后关机。</p>
+<p>作者认为此启动项修改无效，目前没有更好的解决办法，只能寄希望于官方未来可能发布的适配 Linux 系统的 BIOS 更新，但可能性不大。</p>
+<p>作者曾咨询厂家，厂家表示并未进行Linux系统的适配，以及没有提供过bios更新的固件，未来没有更新bios的计划。</p>
+<h3 id="问题二：插入-mSATA-硬盘后无法开机"><a href="#问题二：插入-mSATA-硬盘后无法开机" class="headerlink" title="问题二：插入 mSATA 硬盘后无法开机"></a>问题二：插入 mSATA 硬盘后无法开机</h3><p>问题描述： 插入 mSATA 硬盘后，无论是 Linux 还是 Windows 系统都可能无法开机（蓝色指示灯闪烁一下后无响应）。这个问题并不稳定，有时可以正常开机，有时则不行。</p>
+<p>原因分析： 可能是由于启动顺序问题导致，并且主板没有 RTC 电池，导致 BIOS 设置无法保存。</p>
+<p>解决方法：</p>
+<p>方法一： 接上 RTC 电池以保存 BIOS 设置，但作者购买的电池尚未到货，未能进行测试。</p>
+<p>方法二： 插入 USB 3.0 扩展坞即可正常开机。其原理尚不明确，但作者推测可能采用了“诱骗”原理。</p>
+<h3 id="问题三：开机短接点焊盘脱落"><a href="#问题三：开机短接点焊盘脱落" class="headerlink" title="问题三：开机短接点焊盘脱落"></a>问题三：开机短接点焊盘脱落</h3><p>问题描述： 开机短接点焊盘脱落。</p>
+<p>解决方法： 可以通过将键盘接口接地并与其旁边针脚短接来实现开机。</p>
+<h3 id="目前用途采用Windows-Server系统当成NAS"><a href="#目前用途采用Windows-Server系统当成NAS" class="headerlink" title="目前用途采用Windows Server系统当成NAS"></a>目前用途采用Windows Server系统当成NAS</h3><p>软件推荐： 作者推荐的 NAS 应用包括：Jellyfin、Zerotier，以及使用 SMB (Windows 自带) 进行图片备份，配合手机端的 FolderSync 软件使用。</p>
+<p>远程访问： 可以通过 Windows 远程桌面进行内外网连接。</p>
+<p>更新时间：2025-08-13<br>创建时间：2025-08-09</p>
 </article>
 <div class="article-footer">
     <section id="license">
@@ -141,7 +153,7 @@
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9A%E5%88%B7%E5%85%A5linux%E7%B3%BB%E7%BB%9F%E5%BC%80%E6%9C%BA%E5%8D%8A%E5%B0%8F%E6%97%B6%E5%90%8E%EF%BC%8C%E7%B3%BB%E7%BB%9F%E6%AD%BB%E6%9C%BA%EF%BC%8C%E6%8C%89%E5%BC%80%E6%9C%BA%E9%94%AE%E4%B8%8D%E5%86%8D%E7%AE%A1%E7%94%A8%E9%9C%80%E8%A6%81%E6%96%AD%E7%94%B5%E5%86%8D%E6%AC%A1%E5%BC%80%E6%9C%BA%EF%BC%81"><span class="toc-text">问题一：刷入linux系统开机半小时后，系统死机，按开机键不再管用需要断电再次开机！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E4%BA%8C%EF%BC%9Alinux%E6%8F%92%E5%85%A5msata%E7%A1%AC%E7%9B%98%EF%BC%8C%E5%BC%80%E4%B8%8D%E5%BC%80%E6%9C%BA%EF%BC%88Windows%E6%9C%AA%E5%8F%91%E7%8E%B0%E8%BF%99%E4%B8%AA%E9%97%AE%E9%A2%98%EF%BC%89"><span class="toc-text">问题二：linux插入msata硬盘，开不开机（Windows未发现这个问题）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E4%B8%89%EF%BC%9A%E5%BC%80%E6%9C%BA%E7%9F%AD%E6%8E%A5%E7%82%B9%E7%84%8A%E7%9B%98%E6%8E%89%E4%BA%86"><span class="toc-text">问题三：开机短接点焊盘掉了</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-text">其他</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div></widget>
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9ALinux-%E7%B3%BB%E7%BB%9F%E6%AD%BB%E6%9C%BA"><span class="toc-text">问题一：Linux 系统死机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E4%BA%8C%EF%BC%9A%E6%8F%92%E5%85%A5-mSATA-%E7%A1%AC%E7%9B%98%E5%90%8E%E6%97%A0%E6%B3%95%E5%BC%80%E6%9C%BA"><span class="toc-text">问题二：插入 mSATA 硬盘后无法开机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E4%B8%89%EF%BC%9A%E5%BC%80%E6%9C%BA%E7%9F%AD%E6%8E%A5%E7%82%B9%E7%84%8A%E7%9B%98%E8%84%B1%E8%90%BD"><span class="toc-text">问题三：开机短接点焊盘脱落</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%89%8D%E7%94%A8%E9%80%94%E9%87%87%E7%94%A8Windows-Server%E7%B3%BB%E7%BB%9F%E5%BD%93%E6%88%90NAS"><span class="toc-text">目前用途采用Windows Server系统当成NAS</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div></widget>
 </div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
