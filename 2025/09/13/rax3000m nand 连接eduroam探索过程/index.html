@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1" theme-name="Stellar" theme-version="1.33.1">
   
-  <meta name="robots" content="none">
+  
   <meta name="generator" content="Hexo 7.3.0">
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   
@@ -17,15 +17,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
-  <title>奕阡</title>
+  <title>rax3000m连接eduroam教育网路 - 奕阡</title>
 
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="奕阡">
-<meta property="og:url" content="http://example.com/404">
+    <meta name="description" content="研究生刚刚入学普通的校园网限制10个tcp连接，打开的网站一多就会卡，因此采用次级方法，eduroam无线网络，认证后不需要再次认证，连接过程中出现许多问题在此记录下来。 连接过程采用的路由器为中国移动路由器，RAX3000M-nand版本。mt7981芯片。起初的系统包为opwrt-21.05版本，可能由于版本太老，安装了wpad全软件包，也扫描不到eduroam这个WiFi信号，因此更换了一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rax3000m连接eduroam教育网路">
+<meta property="og:url" content="http://example.com/2025/09/13/rax3000m%20nand%20%E8%BF%9E%E6%8E%A5eduroam%E6%8E%A2%E7%B4%A2%E8%BF%87%E7%A8%8B/">
 <meta property="og:site_name" content="奕阡">
+<meta property="og:description" content="研究生刚刚入学普通的校园网限制10个tcp连接，打开的网站一多就会卡，因此采用次级方法，eduroam无线网络，认证后不需要再次认证，连接过程中出现许多问题在此记录下来。 连接过程采用的路由器为中国移动路由器，RAX3000M-nand版本。mt7981芯片。起初的系统包为opwrt-21.05版本，可能由于版本太老，安装了wpad全软件包，也扫描不到eduroam这个WiFi信号，因此更换了一个">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/avatar.jpg">
+<meta property="article:published_time" content="2025-09-13T05:18:41.795Z">
+<meta property="article:modified_time" content="2025-09-13T05:31:53.683Z">
 <meta property="article:author" content="奕阡">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/avatar.jpg">
@@ -44,12 +48,12 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"http://example.com","author":{"@type":"Person","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg"},"name":"奕阡","description":"","url":"http://example.com"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg"},"dateCreated":"2025-09-13T13:18:41+08:00","dateModified":"2025-09-13T13:31:53+08:00","datePublished":"2025-09-13T13:18:41+08:00","description":"","headline":"rax3000m连接eduroam教育网路","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2025/09/13/rax3000m%20nand%20%E8%BF%9E%E6%8E%A5eduroam%E6%8E%A2%E7%B4%A2%E8%BF%87%E7%A8%8B/"},"publisher":{"@type":"Organization","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg","logo":{"@type":"ImageObject","url":"/images/avatar.jpg"}},"url":"http://example.com/2025/09/13/rax3000m%20nand%20%E8%BF%9E%E6%8E%A5eduroam%E6%8E%A2%E7%B4%A2%E8%BF%87%E7%A8%8B/","image":[]}</script>
   
 </head>
 <body>
 
-<div class="l_body index" id="start" layout="404" type="undefined" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
+<div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
 
 
 <header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/images/avatar.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">奕阡</div><div class="sub cap"><span style="color: #6a11cb;">云</span><span style="color: #2575fc;">梯</span><span style="color: #832049;">九</span><span style="color: #ea70a5;">万</span><span style="color: #f7a23c;">终</span><span style="color: #7b4397;">虚</span><span style="color: #b2413e;">步</span><br><span style="color: #12c2e9;">深</span><span style="color: #c471ed;">谷</span><span style="color: #f64f59;">硅</span><span style="color: #f5b10d;">音</span><span style="color: #6a11cb;">可</span><span style="color: #f64f59;">越</span><span style="color: #ea70a5;">川</span></div></a></div></header>
@@ -61,28 +65,56 @@
 <div class="widgets">
 <div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
 
+
+
 <widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/09/13/rax3000m%20nand%20%E8%BF%9E%E6%8E%A5eduroam%E6%8E%A2%E7%B4%A2%E8%BF%87%E7%A8%8B/"><span class="title">rax3000m连接eduroam教育网路</span></a><a class="item title" href="/2025/09/06/LG_V50%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/"><span class="title">LG_V50刷机教程</span></a><a class="item title" href="/2025/08/09/J3GP%20Pro(n5000%E4%B8%BB%E6%9D%BF)/"><span class="title">J3GP Pro(n5000主板)问题及解决</span></a><a class="item title" href="/2025/08/07/%E9%87%87%E7%94%A8GitHub-Actions-%E7%BC%96%E8%AF%91openwrt%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%EF%BC%88ophub%E5%BA%93%EF%BC%89/"><span class="title">采用GitHub Actions,编译openwrt系统镜像（ophub库）</span></a><a class="item title" href="/2025/08/05/%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%B5%B7%E5%9B%A0/"><span class="title">创建博客起因</span></a></div></widget>
-
-
 </div>
 
 </div></aside><div class="l_main" id="main">
 
 
 
-<article class='md-text error-page'>
-  <h1><img id='error' src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/404/1c830bfcd517d.svg' alt='404'></h1>
-  <p class='what'>
-    <strong>
-      很抱歉，您访问的页面不存在
-    </strong>
-  </p>
-  <p class='why'>
-    可能是输入地址有误或该地址已被删除
-  </p>
-  <br><br>
-  <a class='button' id='back' href="/">返回主页</a>
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-09-13T05:18:41.795Z">2025-09-13</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-09-13T05:31:53.683Z">2025-09-13</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>rax3000m连接eduroam教育网路</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><p>研究生刚刚入学普通的校园网限制10个tcp连接，打开的网站一多就会卡，因此采用次级方法，eduroam无线网络，认证后不需要再次认证，连接过程中出现许多问题在此记录下来。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h3 id="连接过程"><a href="#连接过程" class="headerlink" title="连接过程"></a>连接过程</h3><p>采用的路由器为中国移动路由器，RAX3000M-nand版本。mt7981芯片。<br>起初的系统包为opwrt-21.05版本，可能由于版本太老，安装了wpad全软件包，也扫描不到eduroam这个WiFi信号，因此更换了一个23.05的固件包，安装wpad之后可以看到eduroam但是连接不上，可能是因为安装的软件包不够全面，8021x验证一直过不去，因此打算编译所需软件的系统包。</p>
+<h3 id="系统必备包"><a href="#系统必备包" class="headerlink" title="系统必备包"></a>系统必备包</h3><pre><code>wpad-opensll
+wpa-cli
+kmod-cfg80211
+</code></pre>
+<p>其他根据自己需要添加</p>
+<p>刷机完成通过uboot刷入系统即可</p>
+<p>成功连接eduroam，没有通过ca证书认证，可能是算法太弱不予通过，目前没有时间更换其他版本，因此先采用这个。有空或许会做其他测试。</p>
+<p>更新时间：2025-09-13<br>创建时间：2025-09-13</p>
 </article>
+<div class="article-footer">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+
+</div>
+
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2025/09/06/LG_V50%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/">LG_V50刷机教程</a></div></section></div>
+
+
 
 
   <div class="related-wrap md-text" id="comments">
@@ -102,7 +134,12 @@
 <footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">奕阡</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1">Stellar 1.33.1</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
 </div></footer>
 <div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
-</aside><div class='float-panel'>
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%A8%8B"><span class="toc-text">连接过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%BF%85%E5%A4%87%E5%8C%85"><span class="toc-text">系统必备包</span></a></li></ol></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div></widget>
+</div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>
