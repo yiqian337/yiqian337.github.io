@@ -17,19 +17,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
-  <title>rax3000m连接eduroam教育网路 - 奕阡</title>
+  <title>创建博客起因 - 奕阡</title>
 
   
-    <meta name="description" content="研究生刚刚入学普通的校园网限制10个tcp连接，打开的网站一多就会卡，因此采用次级方法，eduroam无线网络，认证后不需要再次认证，连接过程中出现许多问题在此记录下来。 连接过程采用的路由器为中国移动路由器，RAX3000M-nand版本。mt7981芯片。起初的系统包为opwrt-21.05版本，可能由于版本太老，安装了wpad全软件包，也扫描不到eduroam这个WiFi信号，因此更换了一个">
+    <meta name="description" content="欢迎来到我的博客，暑假过于无聊，正好有创建一个网站的意向，因此创建此博客。为了省钱方便，采用github结合hexo（stellar主题）形式创建。 初步想法具体写什么内容我也不知道，先随便写点吧，比如教程，操作记录之类的东西，熟悉一下写博客的步骤和具体操作。 更新时间：2025-08-13创建时间：2025-08-05">
 <meta property="og:type" content="article">
-<meta property="og:title" content="rax3000m连接eduroam教育网路">
-<meta property="og:url" content="http://example.com/2025/09/13/rax3000m%20nand%20%E8%BF%9E%E6%8E%A5eduroam%E6%8E%A2%E7%B4%A2%E8%BF%87%E7%A8%8B/">
+<meta property="og:title" content="创建博客起因">
+<meta property="og:url" content="http://example.com/2025/09/30/%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%B5%B7%E5%9B%A0/">
 <meta property="og:site_name" content="奕阡">
-<meta property="og:description" content="研究生刚刚入学普通的校园网限制10个tcp连接，打开的网站一多就会卡，因此采用次级方法，eduroam无线网络，认证后不需要再次认证，连接过程中出现许多问题在此记录下来。 连接过程采用的路由器为中国移动路由器，RAX3000M-nand版本。mt7981芯片。起初的系统包为opwrt-21.05版本，可能由于版本太老，安装了wpad全软件包，也扫描不到eduroam这个WiFi信号，因此更换了一个">
+<meta property="og:description" content="欢迎来到我的博客，暑假过于无聊，正好有创建一个网站的意向，因此创建此博客。为了省钱方便，采用github结合hexo（stellar主题）形式创建。 初步想法具体写什么内容我也不知道，先随便写点吧，比如教程，操作记录之类的东西，熟悉一下写博客的步骤和具体操作。 更新时间：2025-08-13创建时间：2025-08-05">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/avatar.jpg">
-<meta property="article:published_time" content="2025-09-13T05:18:41.795Z">
-<meta property="article:modified_time" content="2025-09-13T05:31:53.683Z">
+<meta property="article:published_time" content="2025-09-30T09:02:47.742Z">
+<meta property="article:modified_time" content="2025-08-13T12:16:19.692Z">
 <meta property="article:author" content="奕阡">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/avatar.jpg">
@@ -48,7 +48,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg"},"dateCreated":"2025-09-13T13:18:41+08:00","dateModified":"2025-09-13T13:31:53+08:00","datePublished":"2025-09-13T13:18:41+08:00","description":"","headline":"rax3000m连接eduroam教育网路","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2025/09/13/rax3000m%20nand%20%E8%BF%9E%E6%8E%A5eduroam%E6%8E%A2%E7%B4%A2%E8%BF%87%E7%A8%8B/"},"publisher":{"@type":"Organization","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg","logo":{"@type":"ImageObject","url":"/images/avatar.jpg"}},"url":"http://example.com/2025/09/13/rax3000m%20nand%20%E8%BF%9E%E6%8E%A5eduroam%E6%8E%A2%E7%B4%A2%E8%BF%87%E7%A8%8B/","image":[]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg"},"dateCreated":"2025-09-30T17:02:47+08:00","dateModified":"2025-08-13T20:16:19+08:00","datePublished":"2025-09-30T17:02:47+08:00","description":"","headline":"创建博客起因","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2025/09/30/%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%B5%B7%E5%9B%A0/"},"publisher":{"@type":"Organization","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg","logo":{"@type":"ImageObject","url":"/images/avatar.jpg"}},"url":"http://example.com/2025/09/30/%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%B5%B7%E5%9B%A0/","image":[]}</script>
   
 </head>
 <body>
@@ -67,7 +67,7 @@
 
 
 
-<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/09/13/rax3000m%20nand%20%E8%BF%9E%E6%8E%A5eduroam%E6%8E%A2%E7%B4%A2%E8%BF%87%E7%A8%8B/"><span class="title">rax3000m连接eduroam教育网路</span></a><a class="item title" href="/2025/09/06/LG_V50%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/"><span class="title">LG_V50刷机教程</span></a><a class="item title" href="/2025/08/09/J3GP%20Pro(n5000%E4%B8%BB%E6%9D%BF)/"><span class="title">J3GP Pro(n5000主板)问题及解决</span></a><a class="item title" href="/2025/08/07/%E9%87%87%E7%94%A8GitHub-Actions-%E7%BC%96%E8%AF%91openwrt%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%EF%BC%88ophub%E5%BA%93%EF%BC%89/"><span class="title">采用GitHub Actions,编译openwrt系统镜像（ophub库）</span></a><a class="item title" href="/2025/08/05/%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%B5%B7%E5%9B%A0/"><span class="title">创建博客起因</span></a></div></widget>
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/09/30/rax3000m%20nand%20%E8%BF%9E%E6%8E%A5eduroam%E6%8E%A2%E7%B4%A2%E8%BF%87%E7%A8%8B/"><span class="title">rax3000m连接eduroam教育网路</span></a><a class="item title" href="/2025/09/30/LG_V50%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/"><span class="title">LG_V50刷机教程</span></a><a class="item title" href="/2025/09/30/J3GP%20Pro(n5000%E4%B8%BB%E6%9D%BF)/"><span class="title">J3GP Pro(n5000主板)问题及解决</span></a><a class="item title" href="/2025/08/07/%E9%87%87%E7%94%A8GitHub-Actions-%E7%BC%96%E8%AF%91openwrt%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%EF%BC%88ophub%E5%BA%93%EF%BC%89/"><span class="title">采用GitHub Actions,编译openwrt系统镜像（ophub库）</span></a><a class="item title" href="/2025/09/30/%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%B5%B7%E5%9B%A0/"><span class="title">创建博客起因</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -80,27 +80,20 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">文章</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-09-13T05:18:41.795Z">2025-09-13</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-09-13T05:31:53.683Z">2025-09-13</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-09-30T09:02:47.742Z">2025-09-30</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-08-13T12:16:19.692Z">2025-08-13</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>rax3000m连接eduroam教育网路</span></h1>
+        <h1 class="text title"><span>创建博客起因</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"><p>研究生刚刚入学普通的校园网限制10个tcp连接，打开的网站一多就会卡，因此采用次级方法，eduroam无线网络，认证后不需要再次认证，连接过程中出现许多问题在此记录下来。</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h3 id="连接过程"><a href="#连接过程" class="headerlink" title="连接过程"></a>连接过程</h3><p>采用的路由器为中国移动路由器，RAX3000M-nand版本。mt7981芯片。<br>起初的系统包为opwrt-21.05版本，可能由于版本太老，安装了wpad全软件包，也扫描不到eduroam这个WiFi信号，因此更换了一个23.05的固件包，安装wpad之后可以看到eduroam但是连接不上，可能是因为安装的软件包不够全面，8021x验证一直过不去，因此打算编译所需软件的系统包。</p>
-<h3 id="系统必备包"><a href="#系统必备包" class="headerlink" title="系统必备包"></a>系统必备包</h3><pre><code>wpad-opensll
-wpa-cli
-kmod-cfg80211
-</code></pre>
-<p>其他根据自己需要添加</p>
-<p>刷机完成通过uboot刷入系统即可</p>
-<p>成功连接eduroam，没有通过ca证书认证，可能是算法太弱不予通过，目前没有时间更换其他版本，因此先采用这个。有空或许会做其他测试。</p>
-<p>更新时间：2025-09-13<br>创建时间：2025-09-13</p>
+  </div><article class="md-text content"><p>欢迎来到我的博客，暑假过于无聊，正好有创建一个网站的意向，因此创建此博客。<br>为了省钱方便，采用github结合hexo（stellar主题）形式创建。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h3 id="初步想法"><a href="#初步想法" class="headerlink" title="初步想法"></a>初步想法</h3><p>具体写什么内容我也不知道，先随便写点吧，比如教程，操作记录之类的东西，熟悉一下写博客的步骤和具体操作。</p>
+<p>更新时间：2025-08-13<br>创建时间：2025-08-05</p>
 </article>
 <div class="article-footer">
     <section id="license">
@@ -112,7 +105,7 @@ kmod-cfg80211
 
 </div>
 
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2025/09/06/LG_V50%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/">LG_V50刷机教程</a></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2025/09/30/rax3000m%20nand%20%E8%BF%9E%E6%8E%A5eduroam%E6%8E%A2%E7%B4%A2%E8%BF%87%E7%A8%8B/">rax3000m连接eduroam教育网路</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2025/09/30/J3GP%20Pro(n5000%E4%B8%BB%E6%9D%BF)/">J3GP Pro(n5000主板)问题及解决</a></div></section></div>
 
 
 
@@ -138,7 +131,7 @@ kmod-cfg80211
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%A8%8B"><span class="toc-text">连接过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%BF%85%E5%A4%87%E5%8C%85"><span class="toc-text">系统必备包</span></a></li></ol></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div></widget>
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E6%AD%A5%E6%83%B3%E6%B3%95"><span class="toc-text">初步想法</span></a></li></ol></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div></widget>
 </div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
