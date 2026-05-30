@@ -17,19 +17,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
-  <title>J3GP Pro(n5000主板)问题及解决 - 奕阡</title>
+  <title>奕阡</title>
 
   
-    <meta name="description" content="本文记录了在咸鱼上淘到的一块 N5000 主板所遇到的问题及其部分解决方法。 问题一：Linux 系统死机问题描述： 在刷入 Linux 系统后，电脑运行约半小时后会死机，此时按开机键也无效，必须断电才能重启。 初步排查与尝试： 原因分析： 这个问题可能源于主板 BIOS 对 ACPI 功能的优化不足。 解决方案： 最优解是更新 BIOS，但因缺乏重新编译 BIOS 的能力，作者尝试了修改内核启动">
+    <meta name="description" content="荣悦 E5 刷机教程（根据视频整理）视频作者来源：https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1e65y69E3L&#x2F; 适用对象：荣悦 E5 &#x2F; fortuneShip E5。风险提示：刷机会清空数据，且有变砖风险。请只给自己的设备操作，提前备份资料、确保电量充足，并使用可信来源的刷机包。视频中部分文件名很长，下面以能辨认出的名称和用途为准；实际操作时以你手头刷机包里">
 <meta property="og:type" content="article">
-<meta property="og:title" content="J3GP Pro(n5000主板)问题及解决">
-<meta property="og:url" content="http://example.com/2025/12/16/J3GP%20Pro(n5000%E4%B8%BB%E6%9D%BF)/">
+<meta property="og:title" content="奕阡">
+<meta property="og:url" content="http://example.com/2026/05/30/%E8%8D%A3%E6%82%A6E5%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/">
 <meta property="og:site_name" content="奕阡">
-<meta property="og:description" content="本文记录了在咸鱼上淘到的一块 N5000 主板所遇到的问题及其部分解决方法。 问题一：Linux 系统死机问题描述： 在刷入 Linux 系统后，电脑运行约半小时后会死机，此时按开机键也无效，必须断电才能重启。 初步排查与尝试： 原因分析： 这个问题可能源于主板 BIOS 对 ACPI 功能的优化不足。 解决方案： 最优解是更新 BIOS，但因缺乏重新编译 BIOS 的能力，作者尝试了修改内核启动">
+<meta property="og:description" content="荣悦 E5 刷机教程（根据视频整理）视频作者来源：https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1e65y69E3L&#x2F; 适用对象：荣悦 E5 &#x2F; fortuneShip E5。风险提示：刷机会清空数据，且有变砖风险。请只给自己的设备操作，提前备份资料、确保电量充足，并使用可信来源的刷机包。视频中部分文件名很长，下面以能辨认出的名称和用途为准；实际操作时以你手头刷机包里">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/avatar.jpg">
-<meta property="article:published_time" content="2025-12-16T05:38:07.856Z">
-<meta property="article:modified_time" content="2025-08-13T12:27:06.084Z">
+<meta property="article:published_time" content="2026-05-30T08:46:07.936Z">
+<meta property="article:modified_time" content="2026-05-30T08:45:59.036Z">
 <meta property="article:author" content="奕阡">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/avatar.jpg">
@@ -48,7 +48,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg"},"dateCreated":"2025-12-16T13:38:07+08:00","dateModified":"2025-08-13T20:27:06+08:00","datePublished":"2025-12-16T13:38:07+08:00","description":"","headline":"J3GP Pro(n5000主板)问题及解决","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2025/12/16/J3GP%20Pro(n5000%E4%B8%BB%E6%9D%BF)/"},"publisher":{"@type":"Organization","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg","logo":{"@type":"ImageObject","url":"/images/avatar.jpg"}},"url":"http://example.com/2025/12/16/J3GP%20Pro(n5000%E4%B8%BB%E6%9D%BF)/","image":[]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg"},"dateCreated":"2026-05-30T16:46:07+08:00","dateModified":"2026-05-30T16:45:59+08:00","datePublished":"2026-05-30T16:46:07+08:00","description":"","headline":"","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2026/05/30/%E8%8D%A3%E6%82%A6E5%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/"},"publisher":{"@type":"Organization","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg","logo":{"@type":"ImageObject","url":"/images/avatar.jpg"}},"url":"http://example.com/2026/05/30/%E8%8D%A3%E6%82%A6E5%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/","image":[]}</script>
   
 </head>
 <body>
@@ -67,7 +67,7 @@
 
 
 
-<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2025/12/30/zotero/"><span class="title">zotero</span></a><a class="item title" href="/2025/12/16/LG_V50%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/"><span class="title">LG_V50刷机教程</span></a><a class="item title" href="/2025/12/16/rax3000m%20nand%20%E8%BF%9E%E6%8E%A5eduroam%E6%8E%A2%E7%B4%A2%E8%BF%87%E7%A8%8B/"><span class="title">rax3000m连接eduroam教育网路</span></a><a class="item title" href="/2025/12/16/J3GP%20Pro(n5000%E4%B8%BB%E6%9D%BF)/"><span class="title">J3GP Pro(n5000主板)问题及解决</span></a><a class="item title" href="/2025/08/07/%E9%87%87%E7%94%A8GitHub-Actions-%E7%BC%96%E8%AF%91openwrt%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%EF%BC%88ophub%E5%BA%93%EF%BC%89/"><span class="title">采用GitHub Actions,编译openwrt系统镜像（ophub库）</span></a><a class="item title" href="/2025/08/05/%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%B5%B7%E5%9B%A0/"><span class="title">创建博客起因</span></a></div></widget>
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2026/01/17/zotero/"><span class="title">zotero</span></a><a class="item title" href="/2026/01/17/LG_V50%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/"><span class="title">LG_V50刷机教程</span></a><a class="item title" href="/2026/01/17/rax3000m%20nand%20%E8%BF%9E%E6%8E%A5eduroam%E6%8E%A2%E7%B4%A2%E8%BF%87%E7%A8%8B/"><span class="title">rax3000m连接eduroam教育网路</span></a><a class="item title" href="/2026/01/17/J3GP%20Pro(n5000%E4%B8%BB%E6%9D%BF)/"><span class="title">J3GP Pro(n5000主板)问题及解决</span></a><a class="item title" href="/2025/08/07/%E9%87%87%E7%94%A8GitHub-Actions-%E7%BC%96%E8%AF%91openwrt%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%EF%BC%88ophub%E5%BA%93%EF%BC%89/"><span class="title">采用GitHub Actions,编译openwrt系统镜像（ophub库）</span></a><a class="item title" href="/2025/08/05/%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%B5%B7%E5%9B%A0/"><span class="title">创建博客起因</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
@@ -80,42 +80,247 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">文章</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2025-12-16T05:38:07.856Z">2025-12-16</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2025-08-13T12:27:06.084Z">2025-08-13</time></span></div></div></div>
-    
-    <div class="bottom only-title">
-      
-      <div class="text-area">
-        <h1 class="text title"><span>J3GP Pro(n5000主板)问题及解决</span></h1>
-        
-      </div>
-    </div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-05-30T08:46:07.936Z">2026-05-30</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-05-30T08:45:59.036Z">2026-05-30</time></span></div></div></div>
     
   </div>
-  </div><article class="md-text content"><p>本文记录了在咸鱼上淘到的一块 N5000 主板所遇到的问题及其部分解决方法。</p>
-<h3 id="问题一：Linux-系统死机"><a href="#问题一：Linux-系统死机" class="headerlink" title="问题一：Linux 系统死机"></a>问题一：Linux 系统死机</h3><p>问题描述： 在刷入 Linux 系统后，电脑运行约半小时后会死机，此时按开机键也无效，必须断电才能重启。</p>
-<p>初步排查与尝试：</p>
-<p>原因分析： 这个问题可能源于主板 BIOS 对 ACPI 功能的优化不足。</p>
-<p>解决方案： 最优解是更新 BIOS，但因缺乏重新编译 BIOS 的能力，作者尝试了修改内核启动参数的替代方案。此方法旨在告知 Linux 系统不使用 BIOS 中可能存在缺陷的功能。</p>
-<p>具体操作步骤：</p>
-<p>在终端输入 sudo nano &#x2F;etc&#x2F;default&#x2F;grub 编辑 GRUB 配置文件。</p>
-<p>找到 GRUB_CMDLINE_LINUX_DEFAULT&#x3D; 这一行。</p>
-<p>在引号内添加 intel_idle.max_cstate&#x3D;1 等参数。</p>
-<p>按 Ctrl + X 保存，按 Y 确认，再按 Enter 退出。</p>
-<p>在终端运行 sudo update-grub 使配置生效。</p>
-<p>重启电脑并观察问题是否解决。</p>
-<p>结果： 经过测试，使用 12V 1.5A 电源仍会出现关机情况。使用 12V 2A 电源时，电脑在大约 1 小时 11 分钟后关机。</p>
-<p>作者认为此启动项修改无效，目前没有更好的解决办法，只能寄希望于官方未来可能发布的适配 Linux 系统的 BIOS 更新，但可能性不大。</p>
-<p>作者曾咨询厂家，厂家表示并未进行Linux系统的适配，以及没有提供过bios更新的固件，未来没有更新bios的计划。</p>
-<h3 id="问题二：插入-mSATA-硬盘后无法开机"><a href="#问题二：插入-mSATA-硬盘后无法开机" class="headerlink" title="问题二：插入 mSATA 硬盘后无法开机"></a>问题二：插入 mSATA 硬盘后无法开机</h3><p>问题描述： 插入 mSATA 硬盘后，无论是 Linux 还是 Windows 系统都可能无法开机（蓝色指示灯闪烁一下后无响应）。这个问题并不稳定，有时可以正常开机，有时则不行。</p>
-<p>原因分析： 可能是由于启动顺序问题导致，并且主板没有 RTC 电池，导致 BIOS 设置无法保存。</p>
-<p>解决方法：</p>
-<p>方法一： 接上 RTC 电池以保存 BIOS 设置，但作者购买的电池尚未到货，未能进行测试。</p>
-<p>方法二： 插入 USB 3.0 扩展坞即可正常开机。其原理尚不明确，但作者推测可能采用了“诱骗”原理。</p>
-<h3 id="问题三：开机短接点焊盘脱落"><a href="#问题三：开机短接点焊盘脱落" class="headerlink" title="问题三：开机短接点焊盘脱落"></a>问题三：开机短接点焊盘脱落</h3><p>问题描述： 开机短接点焊盘脱落。</p>
-<p>解决方法： 可以通过将键盘接口接地并与其旁边针脚短接来实现开机。</p>
-<h3 id="目前用途采用Windows-Server系统当成NAS"><a href="#目前用途采用Windows-Server系统当成NAS" class="headerlink" title="目前用途采用Windows Server系统当成NAS"></a>目前用途采用Windows Server系统当成NAS</h3><p>软件推荐： 作者推荐的 NAS 应用包括：Jellyfin、Zerotier，以及使用 SMB (Windows 自带) 进行图片备份，配合手机端的 FolderSync 软件使用。</p>
-<p>远程访问： 可以通过 Windows 远程桌面进行内外网连接。</p>
-<p>更新时间：2025-08-13<br>创建时间：2025-08-09</p>
+  </div><article class="md-text content"><h1 id="荣悦-E5-刷机教程（根据视频整理）视频作者来源：https-www-bilibili-com-video-BV1e65y69E3L"><a href="#荣悦-E5-刷机教程（根据视频整理）视频作者来源：https-www-bilibili-com-video-BV1e65y69E3L" class="headerlink" title="荣悦 E5 刷机教程（根据视频整理）视频作者来源：https://www.bilibili.com/video/BV1e65y69E3L/"></a>荣悦 E5 刷机教程（根据视频整理）视频作者来源：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1e65y69E3L/">https://www.bilibili.com/video/BV1e65y69E3L/</a></h1><blockquote>
+<p>适用对象：荣悦 E5 &#x2F; fortuneShip E5。<br>风险提示：刷机会清空数据，且有变砖风险。请只给自己的设备操作，提前备份资料、确保电量充足，并使用可信来源的刷机包。视频中部分文件名很长，下面以能辨认出的名称和用途为准；实际操作时以你手头刷机包里的文件为准。</p>
+</blockquote>
+<h2 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h2><h3 id="1-所需文件"><a href="#1-所需文件" class="headerlink" title="1. 所需文件"></a>1. 所需文件</h3><p>视频中用到的文件&#x2F;目录大致如下：</p>
+<ul>
+<li>官改刷机包：<code>荣悦E5百变系统V3_去除data加密_[adb调试83781工程模式打开...]</code></li>
+<li>展讯&#x2F;紫光驱动：<code>刷机驱动_SPD_Driver_R4.20.4201</code></li>
+<li>一键刷机脚本：<code>[强卡模式C]一键刷机_会清空用户数据.bat</code></li>
+<li>Magisk&#x2F;面具：<code>Magisk_28103_面具.apk</code></li>
+<li>MT 管理器：<code>MT2.64.apk</code> 或视频里下载的 MT 管理器安装包</li>
+<li>模块包：<code>荣悦E5解除热点数量限制+锁5GWIFI信道+固定热点IP模块v3.zip</code></li>
+<li>UFI-TOOLS 模块&#x2F;插件：<code>UFI-TOOLS for Unisoc devices (4).zip</code></li>
+<li>可选升级包：<code>荣悦E5百变系统V3升级到V3.5(开机状态打开adb刷).7z</code></li>
+</ul>
+<h3 id="2-电脑环境"><a href="#2-电脑环境" class="headerlink" title="2. 电脑环境"></a>2. 电脑环境</h3><ul>
+<li>Windows 电脑</li>
+<li>可传数据的 USB 数据线</li>
+<li>刷机包路径尽量全英文，例如：<code>D:\flash\E5\</code><br>视频里特别强调：路径最好不要有中文，否则部分脚本&#x2F;系统可能报错。</li>
+<li>刷机前可临时关闭 Windows Defender&#x2F;杀毒软件的实时防护，避免脚本或二进制工具被误删。只在确认刷机包可信时这样做。</li>
+</ul>
+<h2 id="二、解压刷机包并安装驱动"><a href="#二、解压刷机包并安装驱动" class="headerlink" title="二、解压刷机包并安装驱动"></a>二、解压刷机包并安装驱动</h2><ol>
+<li>将官改刷机包解压到英文路径。</li>
+<li>打开解压后的目录。</li>
+<li>进入 <code>刷机驱动_SPD_Driver_R4.20.4201</code>。</li>
+<li>根据电脑系统运行驱动安装程序，例如：<ul>
+<li><code>DriverSetup.exe</code></li>
+<li>或 <code>DPInst64.exe</code> &#x2F; <code>DPInst32.exe</code></li>
+</ul>
+</li>
+<li>安装完成后，打开“设备管理器”备用，后面可以观察设备是否识别为 SPRD&#x2F;Android 相关设备。</li>
+</ol>
+<h2 id="三、刷入官改系统"><a href="#三、刷入官改系统" class="headerlink" title="三、刷入官改系统"></a>三、刷入官改系统</h2><blockquote>
+<p>这一步会清空用户数据。视频里选择的是会清空数据的一键刷机脚本。</p>
+</blockquote>
+<ol>
+<li>保持荣悦 E5 关机或准备进入刷机连接状态。</li>
+<li>在刷机包目录中双击运行：</li>
+</ol>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[强卡模式C]一键刷机_会清空用户数据.bat</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>脚本窗口出现等待设备后，按住手机上“电源键上方的按键”（视频里手按的位置），同时插入 USB 数据线。</li>
+<li>等待脚本开始跑进度条&#x2F;开始写入分区后，再松开按键。</li>
+<li>正常情况下，命令行会显示类似内容：</li>
+</ol>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">waiting for device</span><br><span class="line">Flash ROM Mode</span><br><span class="line">Write Part Done ...</span><br><span class="line">Start to write partition ...</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>写入过程中不要拔线、不要关闭窗口。</li>
+<li>刷完后等待设备自动重启，直到进入系统。</li>
+</ol>
+<h2 id="四、首次开机后打开工程模式和-ADB"><a href="#四、首次开机后打开工程模式和-ADB" class="headerlink" title="四、首次开机后打开工程模式和 ADB"></a>四、首次开机后打开工程模式和 ADB</h2><ol>
+<li>进入系统后，打开拨号。</li>
+<li>输入工程模式代码：</li>
+</ol>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*#*#83781#*#</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>进入 <code>EngineerMode</code> 后，切到 <code>DEBUGLOG</code> 或调试相关页面。</li>
+<li>打开以下开关：<ul>
+<li><code>USB Debug</code></li>
+<li>视频中出现的 ADB&#x2F;调试相关开关；如果有 <code>Delta Control</code>，也按视频打开。</li>
+</ul>
+</li>
+<li>重新连接 USB，若手机弹出 USB 调试授权，请允许。</li>
+</ol>
+<h2 id="五、安装-Magisk-和-MT-管理器"><a href="#五、安装-Magisk-和-MT-管理器" class="headerlink" title="五、安装 Magisk 和 MT 管理器"></a>五、安装 Magisk 和 MT 管理器</h2><p>视频中使用 AYA 工具连接并控制手机，也可以用其他 ADB 工具完成安装。</p>
+<h3 id="方法-A：用-AYA-安装"><a href="#方法-A：用-AYA-安装" class="headerlink" title="方法 A：用 AYA 安装"></a>方法 A：用 AYA 安装</h3><ol>
+<li>打开 AYA，选择设备 <code>fortuneship E5</code>。</li>
+<li>等待手机画面出现在电脑上。</li>
+<li>点击 AYA 工具栏里的 <code>+</code> 按钮安装 APK。</li>
+<li>安装：<ul>
+<li><code>Magisk_28103_面具.apk</code></li>
+<li><code>MT2.64.apk</code> 或 MT 管理器 APK</li>
+</ul>
+</li>
+</ol>
+<h3 id="方法-B：用-adb-安装"><a href="#方法-B：用-adb-安装" class="headerlink" title="方法 B：用 adb 安装"></a>方法 B：用 adb 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb install Magisk_28103_面具.apk</span><br><span class="line">adb install MT2.64.apk</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、修复-Magisk-环境"><a href="#六、修复-Magisk-环境" class="headerlink" title="六、修复 Magisk 环境"></a>六、修复 Magisk 环境</h2><ol>
+<li>在手机上打开 <code>Magisk</code>。</li>
+<li>如果弹出“需要修复运行环境&#x2F;修复环境”之类提示，选择修复。</li>
+<li>等待手机自动重启。</li>
+<li>重启后再次确认 Magisk 可以正常打开。</li>
+</ol>
+<h2 id="七、传入并刷入模块包"><a href="#七、传入并刷入模块包" class="headerlink" title="七、传入并刷入模块包"></a>七、传入并刷入模块包</h2><ol>
+<li>用 AYA 文件管理器或其他 ADB 文件工具进入手机目录：</li>
+</ol>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/sdcard/Download</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>上传模块 ZIP，例如：</li>
+</ol>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">荣悦E5解除热点数量限制+锁5GWIFI信道+固定热点IP模块v3.zip</span><br><span class="line">UFI-TOOLS for Unisoc devices (4).zip</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>打开手机上的 Magisk。</li>
+<li>进入 <code>模块</code>。</li>
+<li>选择 <code>从本地安装</code> &#x2F; <code>从存储安装</code>。</li>
+<li>选择刚传到 <code>/sdcard/Download</code> 的模块 ZIP。</li>
+<li>等待安装日志完成，显示成功后重启手机。</li>
+</ol>
+<h2 id="八、进入-UFI-TOOLS-Web-管理页"><a href="#八、进入-UFI-TOOLS-Web-管理页" class="headerlink" title="八、进入 UFI-TOOLS Web 管理页"></a>八、进入 UFI-TOOLS Web 管理页</h2><p>重启后，手机里会出现 <code>UFI-TOOLS_WEB</code> 相关应用&#x2F;服务。第一次打开时，如果弹出通知权限，选择允许。</p>
+<h3 id="1-连接方式"><a href="#1-连接方式" class="headerlink" title="1. 连接方式"></a>1. 连接方式</h3><p>视频里提到的访问地址：</p>
+<ul>
+<li>USB 有线连接&#x2F;USB 网络共享：</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.42.1:2333</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>无线热点连接：</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.43.1:2333</span><br></pre></td></tr></table></figure>
+
+<p>端口都是 <code>2333</code>。</p>
+<h3 id="2-无法访问插件商店时"><a href="#2-无法访问插件商店时" class="headerlink" title="2. 无法访问插件商店时"></a>2. 无法访问插件商店时</h3><p>如果机器没有插卡，可能访问不了插件商店。视频里的做法是先让手机连 Wi-Fi，再访问插件商店或在线功能。</p>
+<h2 id="九、热点管理设置"><a href="#九、热点管理设置" class="headerlink" title="九、热点管理设置"></a>九、热点管理设置</h2><p>打开 Web 页后，进入 <code>UFI-TOOLS v1.0.22 Beta E5</code>，在 <code>热点管理</code> 页面可以设置和控制热点。</p>
+<p>常见配置项：</p>
+<ul>
+<li><code>SSID</code>：热点名称，例如视频里使用 <code>KanoHotspot</code></li>
+<li><code>密码</code>：至少 8 位，例如 <code>12345678</code></li>
+<li><code>安全类型</code>：<code>wpa2</code></li>
+<li><code>频段</code>：<code>2.4GHz</code></li>
+<li><code>信道</code>：按需要选择，视频里演示了锁 5G Wi-Fi 信道&#x2F;固定热点 IP 模块</li>
+<li><code>国家码</code>：例如 <code>CN</code></li>
+</ul>
+<p>页面按钮用途：</p>
+<ul>
+<li><code>保存设置</code>：保存热点配置</li>
+<li><code>立即启动</code>：启动热点</li>
+<li><code>停止热点</code>：关闭热点</li>
+<li><code>启动 USB 共享连接</code>：开启 USB 网络共享</li>
+<li><code>停止 USB 共享连接</code>：关闭 USB 网络共享</li>
+<li><code>刷新状态</code>：刷新当前状态</li>
+<li><code>清除配置</code>：清空已有配置</li>
+</ul>
+<h2 id="十、设置实体按键触发热点开关"><a href="#十、设置实体按键触发热点开关" class="headerlink" title="十、设置实体按键触发热点开关"></a>十、设置实体按键触发热点开关</h2><p>视频里演示了通过实体按键触发脚本，例如按键开启&#x2F;关闭热点。</p>
+<ol>
+<li>打开 Web 管理页的 <code>实体按键触发器</code>。</li>
+<li>选择输入设备：</li>
+</ol>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/dev/input/event0 - gpio-keys</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>选择触发方式，例如：<ul>
+<li><code>单击 single</code></li>
+<li>连击</li>
+<li>长按</li>
+</ul>
+</li>
+<li>选择按键 KeyCode，例如视频里出现过：</li>
+</ol>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">KEY_F1</span><br><span class="line">KEY_VOLUMEUP</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>设置触发参数，例如：<ul>
+<li>连击次数：<code>2</code></li>
+<li>连击间隔：<code>400 ms</code></li>
+<li>长按时间：<code>2000 ms</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="开启热点命令"><a href="#开启热点命令" class="headerlink" title="开启热点命令"></a>开启热点命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh /data/kano_softap_manager/service.sh start</span><br></pre></td></tr></table></figure>
+
+<h3 id="关闭热点命令"><a href="#关闭热点命令" class="headerlink" title="关闭热点命令"></a>关闭热点命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh /data/kano_softap_manager/service.sh stop</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>保存配置。</li>
+<li>点击 <code>启动规则监听</code>。视频里说明：保存之后需要启动监听，这样按键规则才能正常运行。</li>
+<li>如需开机自动生效，点击 <code>开机自启</code>。</li>
+<li>如需移除规则&#x2F;卸载触发器，视频里提示可以直接双击 <code>卸载</code> 按钮。</li>
+</ol>
+<h2 id="十一、调整显示大小（可选）"><a href="#十一、调整显示大小（可选）" class="headerlink" title="十一、调整显示大小（可选）"></a>十一、调整显示大小（可选）</h2><p>视频后面演示了调整手机显示，路径大致是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设置 → 显示 → 显示大小和文字</span><br></pre></td></tr></table></figure>
+
+<p>可以根据自己的屏幕观感调整：</p>
+<ul>
+<li>字体大小</li>
+<li>显示大小</li>
+<li>粗体文字</li>
+<li>高对比度文字</li>
+</ul>
+<h2 id="十二、可选：V3-升级到-V3-5"><a href="#十二、可选：V3-升级到-V3-5" class="headerlink" title="十二、可选：V3 升级到 V3.5"></a>十二、可选：V3 升级到 V3.5</h2><blockquote>
+<p>视频中说明：这是增量包，主要修复一些 bug。由于是增量包，没刷过前面的官改系统不要直接刷。</p>
+</blockquote>
+<ol>
+<li>确认手机已经刷过 V3 官改系统，并且已经打开 ADB。</li>
+<li>解压升级包，例如：</li>
+</ol>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">荣悦E5百变系统V3升级到V3.5(开机状态打开adb刷).7z</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>进入解压后的目录，可以看到类似文件：</li>
+</ol>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">adb.exe</span><br><span class="line">fastboot.exe</span><br><span class="line">flash.bat</span><br><span class="line">system_a.ofsimg</span><br><span class="line">vendor_a.ofsimg</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>手机保持开机状态并连接 USB。</li>
+<li>双击运行：</li>
+</ol>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flash.bat</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>脚本会自动执行：</li>
+</ol>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">waiting for adb devices...</span><br><span class="line">reboot to fastboot...</span><br><span class="line">waiting for fastboot devices...</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>手机会自动进入 Fastboot，脚本开始刷入 <code>system_a</code>、<code>vendor_a</code> 等分区。</li>
+<li>等待显示刷写完成并自动重启。</li>
+<li>重启后进入系统，即完成升级。</li>
+</ol>
+<h2 id="十三、常见问题"><a href="#十三、常见问题" class="headerlink" title="十三、常见问题"></a>十三、常见问题</h2><h3 id="1-脚本一直卡在-waiting-for-device"><a href="#1-脚本一直卡在-waiting-for-device" class="headerlink" title="1. 脚本一直卡在 waiting for device"></a>1. 脚本一直卡在 waiting for device</h3><ul>
+<li>确认数据线支持传数据。</li>
+<li>重新安装 <code>SPD_Driver_R4.20.4201</code> 驱动。</li>
+<li>换 USB 口，优先使用电脑后置 USB 口。</li>
+<li>重新按视频方式：按住电源键上方按键，再插入数据线，等进度开始后再松开。</li>
+<li>打开设备管理器，观察是否出现 <code>SPRD</code>、<code>U2S Diag</code>、<code>Android Phone</code> 等设备。</li>
+</ul>
+<h3 id="2-Magisk-提示修复环境"><a href="#2-Magisk-提示修复环境" class="headerlink" title="2. Magisk 提示修复环境"></a>2. Magisk 提示修复环境</h3><p>按提示修复即可，修复后通常会自动重启。重启后再继续刷模块。</p>
+<h3 id="3-Web-管理页打不开"><a href="#3-Web-管理页打不开" class="headerlink" title="3. Web 管理页打不开"></a>3. Web 管理页打不开</h3><ul>
+<li>USB 方式确认访问：<code>http://192.168.42.1:2333</code></li>
+<li>Wi-Fi&#x2F;热点方式确认访问：<code>http://192.168.43.1:2333</code></li>
+<li>确认模块已在 Magisk 中安装并重启。</li>
+<li>确认手机端 <code>UFI-TOOLS_WEB</code> 已启动，通知权限已允许。</li>
+<li>确认 PC 和手机处于对应连接方式下。</li>
+</ul>
+<h3 id="4-插件商店打不开"><a href="#4-插件商店打不开" class="headerlink" title="4. 插件商店打不开"></a>4. 插件商店打不开</h3><p>视频里是因为机器没插卡、没有网络。先让手机连接 Wi-Fi，或插入可联网 SIM 卡，再重新打开插件商店。</p>
+<h3 id="5-杀毒软件误报-删除脚本"><a href="#5-杀毒软件误报-删除脚本" class="headerlink" title="5. 杀毒软件误报&#x2F;删除脚本"></a>5. 杀毒软件误报&#x2F;删除脚本</h3><p>刷机包里含有批处理和底层刷写工具，可能被误报。只在确认来源可信时临时关闭防护，刷完后再恢复。</p>
+<h2 id="十四、完成检查"><a href="#十四、完成检查" class="headerlink" title="十四、完成检查"></a>十四、完成检查</h2><p>全部完成后，确认以下状态：</p>
+<ul>
+<li>手机能正常开机进入系统。</li>
+<li>Magisk 能正常打开。</li>
+<li>模块安装后已重启。</li>
+<li>浏览器能打开 <code>192.168.42.1:2333</code> 或 <code>192.168.43.1:2333</code>。</li>
+<li>Web 页里能控制热点开启&#x2F;关闭。</li>
+<li>实体按键触发规则保存后，已启动监听，按键可以执行对应命令。</li>
+</ul>
 </article>
 <div class="article-footer">
     <section id="license">
@@ -127,7 +332,7 @@
 
 </div>
 
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2025/12/16/LG_V50%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/">LG_V50刷机教程</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2025/08/07/%E9%87%87%E7%94%A8GitHub-Actions-%E7%BC%96%E8%AF%91openwrt%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%EF%BC%88ophub%E5%BA%93%EF%BC%89/">采用GitHub Actions,编译openwrt系统镜像（ophub库）</a></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2026/01/17/zotero/">zotero</a></div></section></div>
 
 
 
@@ -153,7 +358,7 @@
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9ALinux-%E7%B3%BB%E7%BB%9F%E6%AD%BB%E6%9C%BA"><span class="toc-text">问题一：Linux 系统死机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E4%BA%8C%EF%BC%9A%E6%8F%92%E5%85%A5-mSATA-%E7%A1%AC%E7%9B%98%E5%90%8E%E6%97%A0%E6%B3%95%E5%BC%80%E6%9C%BA"><span class="toc-text">问题二：插入 mSATA 硬盘后无法开机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E4%B8%89%EF%BC%9A%E5%BC%80%E6%9C%BA%E7%9F%AD%E6%8E%A5%E7%82%B9%E7%84%8A%E7%9B%98%E8%84%B1%E8%90%BD"><span class="toc-text">问题三：开机短接点焊盘脱落</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%89%8D%E7%94%A8%E9%80%94%E9%87%87%E7%94%A8Windows-Server%E7%B3%BB%E7%BB%9F%E5%BD%93%E6%88%90NAS"><span class="toc-text">目前用途采用Windows Server系统当成NAS</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div></widget>
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%8D%A3%E6%82%A6-E5-%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B%EF%BC%88%E6%A0%B9%E6%8D%AE%E8%A7%86%E9%A2%91%E6%95%B4%E7%90%86%EF%BC%89%E8%A7%86%E9%A2%91%E4%BD%9C%E8%80%85%E6%9D%A5%E6%BA%90%EF%BC%9Ahttps-www-bilibili-com-video-BV1e65y69E3L"><span class="toc-text">荣悦 E5 刷机教程（根据视频整理）视频作者来源：https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1e65y69E3L&#x2F;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">一、准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%89%80%E9%9C%80%E6%96%87%E4%BB%B6"><span class="toc-text">1. 所需文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%94%B5%E8%84%91%E7%8E%AF%E5%A2%83"><span class="toc-text">2. 电脑环境</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%A7%A3%E5%8E%8B%E5%88%B7%E6%9C%BA%E5%8C%85%E5%B9%B6%E5%AE%89%E8%A3%85%E9%A9%B1%E5%8A%A8"><span class="toc-text">二、解压刷机包并安装驱动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%88%B7%E5%85%A5%E5%AE%98%E6%94%B9%E7%B3%BB%E7%BB%9F"><span class="toc-text">三、刷入官改系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%A6%96%E6%AC%A1%E5%BC%80%E6%9C%BA%E5%90%8E%E6%89%93%E5%BC%80%E5%B7%A5%E7%A8%8B%E6%A8%A1%E5%BC%8F%E5%92%8C-ADB"><span class="toc-text">四、首次开机后打开工程模式和 ADB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%AE%89%E8%A3%85-Magisk-%E5%92%8C-MT-%E7%AE%A1%E7%90%86%E5%99%A8"><span class="toc-text">五、安装 Magisk 和 MT 管理器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-A%EF%BC%9A%E7%94%A8-AYA-%E5%AE%89%E8%A3%85"><span class="toc-text">方法 A：用 AYA 安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-B%EF%BC%9A%E7%94%A8-adb-%E5%AE%89%E8%A3%85"><span class="toc-text">方法 B：用 adb 安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E4%BF%AE%E5%A4%8D-Magisk-%E7%8E%AF%E5%A2%83"><span class="toc-text">六、修复 Magisk 环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E4%BC%A0%E5%85%A5%E5%B9%B6%E5%88%B7%E5%85%A5%E6%A8%A1%E5%9D%97%E5%8C%85"><span class="toc-text">七、传入并刷入模块包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E8%BF%9B%E5%85%A5-UFI-TOOLS-Web-%E7%AE%A1%E7%90%86%E9%A1%B5"><span class="toc-text">八、进入 UFI-TOOLS Web 管理页</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%BF%9E%E6%8E%A5%E6%96%B9%E5%BC%8F"><span class="toc-text">1. 连接方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E6%8F%92%E4%BB%B6%E5%95%86%E5%BA%97%E6%97%B6"><span class="toc-text">2. 无法访问插件商店时</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E7%83%AD%E7%82%B9%E7%AE%A1%E7%90%86%E8%AE%BE%E7%BD%AE"><span class="toc-text">九、热点管理设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E8%AE%BE%E7%BD%AE%E5%AE%9E%E4%BD%93%E6%8C%89%E9%94%AE%E8%A7%A6%E5%8F%91%E7%83%AD%E7%82%B9%E5%BC%80%E5%85%B3"><span class="toc-text">十、设置实体按键触发热点开关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E7%83%AD%E7%82%B9%E5%91%BD%E4%BB%A4"><span class="toc-text">开启热点命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E7%83%AD%E7%82%B9%E5%91%BD%E4%BB%A4"><span class="toc-text">关闭热点命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E8%B0%83%E6%95%B4%E6%98%BE%E7%A4%BA%E5%A4%A7%E5%B0%8F%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-text">十一、调整显示大小（可选）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E5%8F%AF%E9%80%89%EF%BC%9AV3-%E5%8D%87%E7%BA%A7%E5%88%B0-V3-5"><span class="toc-text">十二、可选：V3 升级到 V3.5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%89%E3%80%81%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-text">十三、常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%84%9A%E6%9C%AC%E4%B8%80%E7%9B%B4%E5%8D%A1%E5%9C%A8-waiting-for-device"><span class="toc-text">1. 脚本一直卡在 waiting for device</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Magisk-%E6%8F%90%E7%A4%BA%E4%BF%AE%E5%A4%8D%E7%8E%AF%E5%A2%83"><span class="toc-text">2. Magisk 提示修复环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Web-%E7%AE%A1%E7%90%86%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80"><span class="toc-text">3. Web 管理页打不开</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%8F%92%E4%BB%B6%E5%95%86%E5%BA%97%E6%89%93%E4%B8%8D%E5%BC%80"><span class="toc-text">4. 插件商店打不开</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6%E8%AF%AF%E6%8A%A5-%E5%88%A0%E9%99%A4%E8%84%9A%E6%9C%AC"><span class="toc-text">5. 杀毒软件误报&#x2F;删除脚本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E5%9B%9B%E3%80%81%E5%AE%8C%E6%88%90%E6%A3%80%E6%9F%A5"><span class="toc-text">十四、完成检查</span></a></li></ol></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div></widget>
 </div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
