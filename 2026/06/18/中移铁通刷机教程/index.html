@@ -1,0 +1,1478 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1" theme-name="Stellar" theme-version="1.33.1">
+  
+  
+  <meta name="generator" content="Hexo 7.3.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  <title>20 元中移铁通插排（SY7T609）脱离 Home Assistant，使用 Windows 本地 ESPHome 更换 Wi‑Fi 与 OTA 刷机 - 奕阡</title>
+
+  
+    <meta name="description" content="20 元中移铁通插排（SY7T609）：脱离 Home Assistant，使用 Windows 本地 ESPHome 更换 Wi‑Fi 与 OTA 刷机手里这只中移铁通插排已经刷入 ESPHome，计量部分使用 SY7T609 方案。它平时工作正常，但更换路由器后遇到了一个麻烦：旧固件没有开放网页配网，也没有可用的备用热点，插排无法直接填写新的 Wi‑Fi 名称和密码。 最常见的处理方式是在 H">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20 元中移铁通插排（SY7T609）脱离 Home Assistant，使用 Windows 本地 ESPHome 更换 Wi‑Fi 与 OTA 刷机">
+<meta property="og:url" content="http://example.com/2026/06/18/%E4%B8%AD%E7%A7%BB%E9%93%81%E9%80%9A%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/">
+<meta property="og:site_name" content="奕阡">
+<meta property="og:description" content="20 元中移铁通插排（SY7T609）：脱离 Home Assistant，使用 Windows 本地 ESPHome 更换 Wi‑Fi 与 OTA 刷机手里这只中移铁通插排已经刷入 ESPHome，计量部分使用 SY7T609 方案。它平时工作正常，但更换路由器后遇到了一个麻烦：旧固件没有开放网页配网，也没有可用的备用热点，插排无法直接填写新的 Wi‑Fi 名称和密码。 最常见的处理方式是在 H">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/avatar.jpg">
+<meta property="article:published_time" content="2026-06-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-18T08:33:47.610Z">
+<meta property="article:author" content="奕阡">
+<meta property="article:tag" content="中移铁通插排">
+<meta property="article:tag" content="SY7T609">
+<meta property="article:tag" content="ESP8266">
+<meta property="article:tag" content="ESPHome">
+<meta property="article:tag" content="OTA">
+<meta property="article:tag" content="Home Assistant">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/avatar.jpg">
+  
+  
+  
+  <meta name="keywords" content="中移铁通插排,SY7T609,ESP8266,ESPHome,OTA,Home Assistant">
+
+  <!-- feed -->
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.33.1">
+
+
+  
+
+  
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg"},"dateCreated":"2026-06-18T00:00:00+08:00","dateModified":"2026-06-18T16:33:47+08:00","datePublished":"2026-06-18T00:00:00+08:00","description":"","headline":"20 元中移铁通插排（SY7T609）脱离 Home Assistant，使用 Windows 本地 ESPHome 更换 Wi‑Fi 与 OTA 刷机","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2026/06/18/%E4%B8%AD%E7%A7%BB%E9%93%81%E9%80%9A%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/"},"publisher":{"@type":"Organization","name":"奕阡","sameAs":[],"image":"/images/avatar.jpg","logo":{"@type":"ImageObject","url":"/images/avatar.jpg"}},"url":"http://example.com/2026/06/18/%E4%B8%AD%E7%A7%BB%E9%93%81%E9%80%9A%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/","keywords":"中移铁通插排, SY7T609, ESP8266, ESPHome, OTA, Home Assistant","image":[]}</script>
+  
+</head>
+<body>
+
+<div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/images/avatar.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">奕阡</div><div class="sub cap"><span style="color: #6a11cb;">云</span><span style="color: #2575fc;">梯</span><span style="color: #832049;">九</span><span style="color: #ea70a5;">万</span><span style="color: #f7a23c;">终</span><span style="color: #7b4397;">虚</span><span style="color: #b2413e;">步</span><br><span style="color: #12c2e9;">深</span><span style="color: #c471ed;">谷</span><span style="color: #f64f59;">硅</span><span style="color: #f5b10d;">音</span><span style="color: #6a11cb;">可</span><span style="color: #f64f59;">越</span><span style="color: #ea70a5;">川</span></div></a></div></header>
+
+<div class="nav-area">
+
+<nav class="menu dis-select"></nav>
+</div>
+<div class="widgets">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2026/06/18/%E4%B8%AD%E7%A7%BB%E9%93%81%E9%80%9A%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/"><span class="title">20 元中移铁通插排（SY7T609）脱离 Home Assistant，使用 Windows 本地 ESPHome 更换 Wi‑Fi 与 OTA 刷机</span></a><a class="item title" href="/2026/05/30/%E8%8D%A3%E6%82%A6E5%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/"><span class="title">荣悦E5刷机教程</span></a><a class="item title" href="/2026/01/17/zotero/"><span class="title">zotero</span></a><a class="item title" href="/2026/01/17/LG_V50%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/"><span class="title">LG_V50刷机教程</span></a><a class="item title" href="/2026/01/17/rax3000m%20nand%20%E8%BF%9E%E6%8E%A5eduroam%E6%8E%A2%E7%B4%A2%E8%BF%87%E7%A8%8B/"><span class="title">rax3000m连接eduroam教育网路</span></a><a class="item title" href="/2026/01/17/J3GP%20Pro(n5000%E4%B8%BB%E6%9D%BF)/"><span class="title">J3GP Pro(n5000主板)问题及解决</span></a><a class="item title" href="/2025/08/07/%E9%87%87%E7%94%A8GitHub-Actions-%E7%BC%96%E8%AF%91openwrt%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%EF%BC%88ophub%E5%BA%93%EF%BC%89/"><span class="title">采用GitHub Actions,编译openwrt系统镜像（ophub库）</span></a><a class="item title" href="/2025/08/05/%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%B5%B7%E5%9B%A0/"><span class="title">创建博客起因</span></a></div></widget>
+</div>
+
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/">智能家居</a> <span class="sep"></span> <a class="cap breadcrumb-link" href="/categories/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/ESPHome/">ESPHome</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-06-17T16:00:00.000Z">2026-06-18</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-06-18T08:33:47.610Z">2026-06-18</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>20 元中移铁通插排（SY7T609）脱离 Home Assistant，使用 Windows 本地 ESPHome 更换 Wi‑Fi 与 OTA 刷机</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><h1 id="20-元中移铁通插排（SY7T609）：脱离-Home-Assistant，使用-Windows-本地-ESPHome-更换-Wi‑Fi-与-OTA-刷机"><a href="#20-元中移铁通插排（SY7T609）：脱离-Home-Assistant，使用-Windows-本地-ESPHome-更换-Wi‑Fi-与-OTA-刷机" class="headerlink" title="20 元中移铁通插排（SY7T609）：脱离 Home Assistant，使用 Windows 本地 ESPHome 更换 Wi‑Fi 与 OTA 刷机"></a>20 元中移铁通插排（SY7T609）：脱离 Home Assistant，使用 Windows 本地 ESPHome 更换 Wi‑Fi 与 OTA 刷机</h1><p>手里这只中移铁通插排已经刷入 ESPHome，计量部分使用 SY7T609 方案。它平时工作正常，但更换路由器后遇到了一个麻烦：旧固件没有开放网页配网，也没有可用的备用热点，插排无法直接填写新的 Wi‑Fi 名称和密码。</p>
+<p>最常见的处理方式是在 Home Assistant 中安装 ESPHome Device Builder，然后重新编译并上传固件。但在部分网络环境下，Home Assistant 拉取插件镜像可能长时间停滞，甚至出现类似错误：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Failed to call /addons/5c53de3b_esphome/install</span><br></pre></td></tr></table></figure>
+
+<p>与其继续排查 Home Assistant 的容器网络，不如直接在 Windows 中安装 ESPHome。只要插排当前还能连接到旧网络，并且旧固件保留了 OTA 功能，就可以在电脑上完成配置修改、固件编译和无线上传。</p>
+<p>本文记录完整操作过程。</p>
+<blockquote>
+<p>[!IMPORTANT]<br>本文讨论的是 <strong>ESPHome 固件的 OTA 更新</strong>，不是给普通插排升级官方固件。</p>
+<p>操作前必须确认设备已经刷入 ESPHome，并保留 OTA 组件。若 OTA 已被删除、OTA 密码未知，或者设备完全无法连接任何已知网络，就不能使用本文的无线方法，只能拆机后通过 3.3V USB 转 TTL 串口重新烧录。</p>
+</blockquote>
+<hr>
+<h2 id="一、先判断能不能使用-OTA-方法"><a href="#一、先判断能不能使用-OTA-方法" class="headerlink" title="一、先判断能不能使用 OTA 方法"></a>一、先判断能不能使用 OTA 方法</h2><p>开始前，先确认以下条件。</p>
+<h3 id="可以使用本文方法的情况"><a href="#可以使用本文方法的情况" class="headerlink" title="可以使用本文方法的情况"></a>可以使用本文方法的情况</h3><p>满足以下条件即可继续：</p>
+<ul>
+<li>插排已经运行 ESPHome；</li>
+<li>手里有该插排对应的 YAML 配置文件；</li>
+<li>旧固件中保留了 <code>ota:</code> 配置；</li>
+<li>知道旧固件的 OTA 密码，或者旧固件没有设置 OTA 密码；</li>
+<li>插排还能连接旧路由器，或记得旧 Wi‑Fi 的名称和密码；</li>
+<li>Windows 电脑能与插排处于同一个局域网。</li>
+</ul>
+<h3 id="不能直接使用-OTA-的情况"><a href="#不能直接使用-OTA-的情况" class="headerlink" title="不能直接使用 OTA 的情况"></a>不能直接使用 OTA 的情况</h3><p>出现以下任一情况，通常需要串口线刷：</p>
+<ul>
+<li>旧固件删除了 OTA 组件；</li>
+<li>OTA 密码已经忘记；</li>
+<li>旧 Wi‑Fi 的名称或密码已经忘记；</li>
+<li>插排始终无法连接网络；</li>
+<li>YAML 中修改了错误的芯片型号、闪存参数或关键引脚；</li>
+<li>无线上传过程中设备损坏且无法重新联网。</li>
+</ul>
+<blockquote>
+<p>[!WARNING]<br>插排内部直接连接市电，拆机后存在触电风险。</p>
+<p>进行串口刷机前必须完全拔掉市电，并确认高压电容已经放电。USB 转 TTL 必须使用 <strong>3.3V 电平</strong>，不要使用 5V 信号，也不要同时接入市电和串口供电。</p>
+</blockquote>
+<hr>
+<h2 id="二、需要准备的文件和工具"><a href="#二、需要准备的文件和工具" class="headerlink" title="二、需要准备的文件和工具"></a>二、需要准备的文件和工具</h2><h3 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h3><ul>
+<li>已刷入 ESPHome 的中移铁通插排；</li>
+<li>Windows 10 或 Windows 11 电脑；</li>
+<li>可用的旧路由器，或者支持移动热点的 Windows 电脑；</li>
+<li>新路由器的 2.4GHz Wi‑Fi 名称和密码。</li>
+</ul>
+<p>ESP8266 只支持 2.4GHz Wi‑Fi。新路由器如果只开启 5GHz，插排将无法连接。</p>
+<h3 id="软件和文件"><a href="#软件和文件" class="headerlink" title="软件和文件"></a>软件和文件</h3><ul>
+<li>Python；</li>
+<li>ESPHome；</li>
+<li>插排原始 YAML 配置文件；</li>
+<li>与配置文件匹配的 <code>secrets.yaml</code>；</li>
+<li>可选：文本编辑器，例如 VS Code、Notepad++ 或 Windows 记事本。</li>
+</ul>
+<p>最关键的是原始 YAML 文件。它通常包含：</p>
+<ul>
+<li>ESP8266 板型；</li>
+<li>继电器引脚；</li>
+<li>按键引脚；</li>
+<li>状态灯引脚；</li>
+<li>SY7T609 计量芯片配置；</li>
+<li>功率、电压、电流传感器；</li>
+<li>Wi‑Fi、API 和 OTA 设置。</li>
+</ul>
+<p><strong>不要为了换 Wi‑Fi 重写整份配置。</strong> 最稳妥的做法是保留原来的硬件定义，只修改 Wi‑Fi、OTA 和临时上传地址。</p>
+<hr>
+<h1 id="三、在-Windows-中安装-Python"><a href="#三、在-Windows-中安装-Python" class="headerlink" title="三、在 Windows 中安装 Python"></a>三、在 Windows 中安装 Python</h1><h2 id="1-安装-Python"><a href="#1-安装-Python" class="headerlink" title="1. 安装 Python"></a>1. 安装 Python</h2><p>从 Python 官方安装程序安装 Python 3。</p>
+<p>安装界面中必须勾选：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Add python.exe to PATH</span><br></pre></td></tr></table></figure>
+
+<p>然后选择正常安装。</p>
+<p>安装完成后，按下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Win + R</span><br></pre></td></tr></table></figure>
+
+<p>输入：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd</span><br></pre></td></tr></table></figure>
+
+<p>在命令提示符中检查版本：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python --version</span><br></pre></td></tr></table></figure>
+
+<p>也可以使用：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">py --version</span><br></pre></td></tr></table></figure>
+
+<p>正常情况下会显示类似：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Python 3.x.x</span><br></pre></td></tr></table></figure>
+
+<p>如果提示找不到命令，通常是 Python 没有加入环境变量。可以重新运行安装程序并勾选 PATH，或者后续使用 <code>py -m</code> 方式执行命令。</p>
+<hr>
+<h1 id="四、安装-ESPHome"><a href="#四、安装-ESPHome" class="headerlink" title="四、安装 ESPHome"></a>四、安装 ESPHome</h1><h2 id="1-使用清华-PyPI-镜像安装"><a href="#1-使用清华-PyPI-镜像安装" class="headerlink" title="1. 使用清华 PyPI 镜像安装"></a>1. 使用清华 PyPI 镜像安装</h2><p>在命令提示符中运行：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+
+<p>然后安装 ESPHome：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install esphome -i https://pypi.tuna.tsinghua.edu.cn/simple --no-cache-<span class="built_in">dir</span></span><br></pre></td></tr></table></figure>
+
+<p>如果电脑上的 <code>python</code> 命令不可用，但 <code>py</code> 可用，则改为：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">py -m pip install esphome -i https://pypi.tuna.tsinghua.edu.cn/simple --no-cache-<span class="built_in">dir</span></span><br></pre></td></tr></table></figure>
+
+<p>安装完成后检查：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">esphome version</span><br></pre></td></tr></table></figure>
+
+<p>若系统仍提示找不到 <code>esphome</code>，可以直接使用：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m esphome version</span><br></pre></td></tr></table></figure>
+
+<p>或者：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">py -m esphome version</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!NOTE]<br>清华镜像主要加速 ESPHome 及其 Python 依赖的安装。第一次编译时，ESPHome 仍可能下载编译器、PlatformIO 平台包或其他组件，因此电脑仍需保持网络连接。</p>
+</blockquote>
+<h2 id="2-建议使用独立虚拟环境"><a href="#2-建议使用独立虚拟环境" class="headerlink" title="2. 建议使用独立虚拟环境"></a>2. 建议使用独立虚拟环境</h2><p>为了避免与电脑中其他 Python 软件冲突，可以给 ESPHome 建立单独环境。</p>
+<p>在准备存放配置的目录中运行：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python -m venv .venv</span><br><span class="line">.venv\Scripts\activate</span><br><span class="line">python -m pip install --upgrade pip</span><br><span class="line">python -m pip install esphome -i https://pypi.tuna.tsinghua.edu.cn/simple --no-cache-<span class="built_in">dir</span></span><br></pre></td></tr></table></figure>
+
+<p>以后进入该目录后，先执行：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.venv\Scripts\activate</span><br></pre></td></tr></table></figure>
+
+<p>再运行 ESPHome 命令。</p>
+<p>这一步不是必须的，但长期使用时更整洁。</p>
+<hr>
+<h1 id="五、建立配置目录"><a href="#五、建立配置目录" class="headerlink" title="五、建立配置目录"></a>五、建立配置目录</h1><p>在桌面创建一个目录，例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chapai</span><br></pre></td></tr></table></figure>
+
+<p>将原来的 ESPHome 配置复制进去。示例文件结构：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chapai</span><br><span class="line">├─ powerboard-test.yaml</span><br><span class="line">└─ secrets.yaml</span><br></pre></td></tr></table></figure>
+
+<p>建议先把原始配置复制一份作为备份：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powerboard-test-backup.yaml</span><br></pre></td></tr></table></figure>
+
+<p>后续只编辑工作副本。</p>
+<hr>
+<h1 id="六、检查-YAML-中使用了哪些-secrets"><a href="#六、检查-YAML-中使用了哪些-secrets" class="headerlink" title="六、检查 YAML 中使用了哪些 secrets"></a>六、检查 YAML 中使用了哪些 secrets</h1><p>打开 <code>powerboard-test.yaml</code>，搜索：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">!secret</span></span><br></pre></td></tr></table></figure>
+
+<p>常见写法如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">wifi:</span></span><br><span class="line">  <span class="attr">ssid:</span> <span class="type">!secret</span> <span class="string">wifi_ssid</span></span><br><span class="line">  <span class="attr">password:</span> <span class="type">!secret</span> <span class="string">wifi_password</span></span><br></pre></td></tr></table></figure>
+
+<p>OTA 可能写成旧格式：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ota:</span></span><br><span class="line">  <span class="attr">password:</span> <span class="type">!secret</span> <span class="string">ota_password</span></span><br></pre></td></tr></table></figure>
+
+<p>也可能是新格式：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ota:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">esphome</span></span><br><span class="line">    <span class="attr">password:</span> <span class="type">!secret</span> <span class="string">ota_password</span></span><br></pre></td></tr></table></figure>
+
+<p>API 可能是密码方式：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">api:</span></span><br><span class="line">  <span class="attr">password:</span> <span class="type">!secret</span> <span class="string">api_password</span></span><br></pre></td></tr></table></figure>
+
+<p>也可能是加密密钥方式：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">api:</span></span><br><span class="line">  <span class="attr">encryption:</span></span><br><span class="line">    <span class="attr">key:</span> <span class="type">!secret</span> <span class="string">api_encryption_key</span></span><br></pre></td></tr></table></figure>
+
+<p><code>secrets.yaml</code> 中的名称必须和主配置中 <code>!secret</code> 后面的名称完全一致。不要仅根据网上教程机械添加无关字段。</p>
+<p>例如，主配置中使用了：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ssid:</span> <span class="type">!secret</span> <span class="string">wifi_ssid</span></span><br><span class="line"><span class="attr">password:</span> <span class="type">!secret</span> <span class="string">wifi_password</span></span><br></pre></td></tr></table></figure>
+
+<p>那么 <code>secrets.yaml</code> 至少需要：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">wifi_ssid:</span> <span class="string">&quot;新的 2.4GHz Wi-Fi 名称&quot;</span></span><br><span class="line"><span class="attr">wifi_password:</span> <span class="string">&quot;新的 Wi-Fi 密码&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果主配置还引用了 OTA 密码：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">password:</span> <span class="type">!secret</span> <span class="string">ota_password</span></span><br></pre></td></tr></table></figure>
+
+<p>则继续加入：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ota_password:</span> <span class="string">&quot;原 OTA 密码或准备使用的新密码&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果主配置没有引用 <code>api_password</code>、<code>ap_password</code>，就不必在 <code>secrets.yaml</code> 中添加这些字段。</p>
+<p>一个可能的完整示例是：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">wifi_ssid:</span> <span class="string">&quot;MyHome_2.4G&quot;</span></span><br><span class="line"><span class="attr">wifi_password:</span> <span class="string">&quot;填写新的 Wi-Fi 密码&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">ota_password:</span> <span class="string">&quot;填写 OTA 密码&quot;</span></span><br><span class="line"><span class="attr">api_password:</span> <span class="string">&quot;填写 API 密码&quot;</span></span><br><span class="line"><span class="attr">ap_password:</span> <span class="string">&quot;填写备用热点密码&quot;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!CAUTION]<br><code>secrets.yaml</code> 包含明文密码。发布博客、上传 GitHub 或发送配置文件前，必须删除真实密码。</p>
+<p>推荐在公开示例中只保留占位符。</p>
+</blockquote>
+<hr>
+<h1 id="七、让插排临时回到旧网络"><a href="#七、让插排临时回到旧网络" class="headerlink" title="七、让插排临时回到旧网络"></a>七、让插排临时回到旧网络</h1><p>OTA 上传的前提是电脑能通过局域网访问插排。</p>
+<h2 id="情况-A：旧路由器还在"><a href="#情况-A：旧路由器还在" class="headerlink" title="情况 A：旧路由器还在"></a>情况 A：旧路由器还在</h2><p>这是最简单的情况。</p>
+<ol>
+<li>给旧路由器通电；</li>
+<li>保持旧 Wi‑Fi 名称和密码不变；</li>
+<li>给插排通电；</li>
+<li>等待插排连接旧路由器；</li>
+<li>将 Windows 电脑也连接到该路由器；</li>
+<li>在路由器的 DHCP 客户端列表中查找插排 IP。</li>
+</ol>
+<p>设备名称可能是 YAML 中的节点名，例如：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">esphome:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">powerboard-test</span></span><br></pre></td></tr></table></figure>
+
+<p>路由器中可能显示为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powerboard-test</span><br></pre></td></tr></table></figure>
+
+<p>也可能只显示 MAC 地址。</p>
+<h2 id="情况-B：旧路由器已经拆除"><a href="#情况-B：旧路由器已经拆除" class="headerlink" title="情况 B：旧路由器已经拆除"></a>情况 B：旧路由器已经拆除</h2><p>可以使用 Windows 移动热点模拟旧路由器。</p>
+<h3 id="1-修改电脑移动热点"><a href="#1-修改电脑移动热点" class="headerlink" title="1. 修改电脑移动热点"></a>1. 修改电脑移动热点</h3><p>打开：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">设置</span><br><span class="line">→ 网络和 Internet</span><br><span class="line">→ 移动热点</span><br></pre></td></tr></table></figure>
+
+<p>将热点设置为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">网络名称：与旧路由器 SSID 完全一致</span><br><span class="line">网络密码：与旧路由器密码完全一致</span><br><span class="line">频段：2.4GHz</span><br></pre></td></tr></table></figure>
+
+<p>名称和密码区分大小写，空格也必须完全相同。</p>
+<h3 id="2-启动热点并给插排通电"><a href="#2-启动热点并给插排通电" class="headerlink" title="2. 启动热点并给插排通电"></a>2. 启动热点并给插排通电</h3><p>开启移动热点后，再给插排通电。</p>
+<p>等待几十秒，插排会把电脑热点当作旧路由器并尝试自动连接。</p>
+<h3 id="3-查找插排的临时-IP"><a href="#3-查找插排的临时-IP" class="headerlink" title="3. 查找插排的临时 IP"></a>3. 查找插排的临时 IP</h3><p>可以从 Windows 移动热点的已连接设备列表查看。</p>
+<p>也可以在命令提示符中运行：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arp -a</span><br></pre></td></tr></table></figure>
+
+<p>先记录插排断电时的列表，再给插排通电并重新执行 <code>arp -a</code>，新增的局域网地址通常就是插排。</p>
+<p>还可以尝试通过设备名访问：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ping</span> powerboard-test.local</span><br></pre></td></tr></table></figure>
+
+<p>设备名必须替换成 YAML 中：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">esphome:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">...</span></span><br></pre></td></tr></table></figure>
+
+<p>后面的实际名称。</p>
+<blockquote>
+<p>Windows 移动热点常用网段可能是 <code>192.168.137.x</code>，但并非所有系统都固定如此，应以实际分配结果为准。</p>
+</blockquote>
+<hr>
+<h1 id="八、先测试插排是否在线"><a href="#八、先测试插排是否在线" class="headerlink" title="八、先测试插排是否在线"></a>八、先测试插排是否在线</h1><p>假设插排当前 IP 为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.168.137.25</span><br></pre></td></tr></table></figure>
+
+<p>在命令提示符中运行：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ping</span> <span class="number">192</span>.<span class="number">168</span>.<span class="number">137</span>.<span class="number">25</span></span><br></pre></td></tr></table></figure>
+
+<p>ESPHome 设备不一定持续响应所有 ping，但如果能收到回复，说明基本网络连通正常。</p>
+<p>还可以查看 ESPHome 日志：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">esphome logs powerboard-test.yaml --device <span class="number">192</span>.<span class="number">168</span>.<span class="number">137</span>.<span class="number">25</span></span><br></pre></td></tr></table></figure>
+
+<p>如果 <code>esphome</code> 命令不可用：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m esphome logs powerboard-test.yaml --device <span class="number">192</span>.<span class="number">168</span>.<span class="number">137</span>.<span class="number">25</span></span><br></pre></td></tr></table></figure>
+
+<p>若能看到设备运行日志，说明 OTA 成功率较高。</p>
+<p>按：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ctrl + C</span><br></pre></td></tr></table></figure>
+
+<p>退出日志查看。</p>
+<hr>
+<h1 id="九、在-YAML-中临时指定旧地址"><a href="#九、在-YAML-中临时指定旧地址" class="headerlink" title="九、在 YAML 中临时指定旧地址"></a>九、在 YAML 中临时指定旧地址</h1><p>打开 <code>powerboard-test.yaml</code>，找到 <code>wifi:</code> 部分。</p>
+<p>保留新 Wi‑Fi 的 SSID 和密码，同时加入旧网络下的临时 IP：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">wifi:</span></span><br><span class="line">  <span class="attr">ssid:</span> <span class="type">!secret</span> <span class="string">wifi_ssid</span></span><br><span class="line">  <span class="attr">password:</span> <span class="type">!secret</span> <span class="string">wifi_password</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">use_address:</span> <span class="number">192.168</span><span class="number">.137</span><span class="number">.25</span></span><br></pre></td></tr></table></figure>
+
+<p>这里的逻辑是：</p>
+<ul>
+<li><code>ssid</code> 和 <code>password</code>：写入新固件，供设备重启后连接新路由器；</li>
+<li><code>use_address</code>：告诉 ESPHome 本次上传时去旧地址寻找设备。</li>
+</ul>
+<p>完整示例：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">wifi:</span></span><br><span class="line">  <span class="attr">ssid:</span> <span class="type">!secret</span> <span class="string">wifi_ssid</span></span><br><span class="line">  <span class="attr">password:</span> <span class="type">!secret</span> <span class="string">wifi_password</span></span><br><span class="line">  <span class="attr">use_address:</span> <span class="number">192.168</span><span class="number">.137</span><span class="number">.25</span></span><br></pre></td></tr></table></figure>
+
+<p>如果配置中原本还有静态 IP、备用热点或其他选项，应保留原有缩进和结构。</p>
+<p>例如：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">wifi:</span></span><br><span class="line">  <span class="attr">ssid:</span> <span class="type">!secret</span> <span class="string">wifi_ssid</span></span><br><span class="line">  <span class="attr">password:</span> <span class="type">!secret</span> <span class="string">wifi_password</span></span><br><span class="line">  <span class="attr">use_address:</span> <span class="number">192.168</span><span class="number">.137</span><span class="number">.25</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">ap:</span></span><br><span class="line">    <span class="attr">ssid:</span> <span class="string">&quot;Powerboard Fallback&quot;</span></span><br><span class="line">    <span class="attr">password:</span> <span class="type">!secret</span> <span class="string">ap_password</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!IMPORTANT]<br><code>use_address</code> 只是迁移网络时的临时参数。</p>
+<p>插排成功连接新路由器后，应删除这一行，否则下次 OTA 时 ESPHome 仍会尝试访问旧 IP。</p>
+</blockquote>
+<hr>
+<h1 id="十、检查-API-和-OTA-配置"><a href="#十、检查-API-和-OTA-配置" class="headerlink" title="十、检查 API 和 OTA 配置"></a>十、检查 API 和 OTA 配置</h1><h2 id="1-OTA-配置不能被删除"><a href="#1-OTA-配置不能被删除" class="headerlink" title="1. OTA 配置不能被删除"></a>1. OTA 配置不能被删除</h2><p>旧版 ESPHome 常见写法：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ota:</span></span><br><span class="line">  <span class="attr">password:</span> <span class="type">!secret</span> <span class="string">ota_password</span></span><br></pre></td></tr></table></figure>
+
+<p>新版 ESPHome 常见写法：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ota:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">esphome</span></span><br><span class="line">    <span class="attr">password:</span> <span class="type">!secret</span> <span class="string">ota_password</span></span><br></pre></td></tr></table></figure>
+
+<p>使用哪一种取决于本机 ESPHome 版本和原配置格式。优先保留原文件中的写法，再根据配置检查结果修改。</p>
+<h2 id="2-API-与-OTA-不是同一功能"><a href="#2-API-与-OTA-不是同一功能" class="headerlink" title="2. API 与 OTA 不是同一功能"></a>2. API 与 OTA 不是同一功能</h2><p>这两个组件用途不同：</p>
+<ul>
+<li><code>api:</code>：供 Home Assistant 与 ESPHome 设备通信；</li>
+<li><code>ota:</code>：供 ESPHome 上传新固件。</li>
+</ul>
+<p>即使删除 API 密码，OTA 密码也不会自动删除。</p>
+<p>同样，Home Assistant 无法连接 API，并不代表 OTA 一定失效。</p>
+<h2 id="3-不建议为了节省内存直接删除全部恢复通道"><a href="#3-不建议为了节省内存直接删除全部恢复通道" class="headerlink" title="3. 不建议为了节省内存直接删除全部恢复通道"></a>3. 不建议为了节省内存直接删除全部恢复通道</h2><p>ESP8266 内存有限，删除 <code>web_server</code> 确实可以降低资源占用。但为了以后更换网络方便，可以考虑保留一个受密码保护的备用热点：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">wifi:</span></span><br><span class="line">  <span class="attr">ssid:</span> <span class="type">!secret</span> <span class="string">wifi_ssid</span></span><br><span class="line">  <span class="attr">password:</span> <span class="type">!secret</span> <span class="string">wifi_password</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">ap:</span></span><br><span class="line">    <span class="attr">ssid:</span> <span class="string">&quot;Powerboard Fallback&quot;</span></span><br><span class="line">    <span class="attr">password:</span> <span class="type">!secret</span> <span class="string">ap_password</span></span><br><span class="line"></span><br><span class="line"><span class="attr">captive_portal:</span></span><br></pre></td></tr></table></figure>
+
+<p>是否保留取决于固件大小、内存稳定性和个人安全需求。</p>
+<p>如果原固件曾因内存不足反复重启，可以继续不启用 <code>web_server</code>，但至少应保存好原配置、OTA 密码和旧网络信息。</p>
+<hr>
+<h1 id="十一、验证配置文件"><a href="#十一、验证配置文件" class="headerlink" title="十一、验证配置文件"></a>十一、验证配置文件</h1><p>进入 <code>chapai</code> 文件夹。</p>
+<p>最方便的方法是：</p>
+<ol>
+<li>打开该文件夹；</li>
+<li>点击资源管理器顶部地址栏；</li>
+<li>输入 <code>cmd</code>；</li>
+<li>按回车。</li>
+</ol>
+<p>然后运行：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">esphome config powerboard-test.yaml</span><br></pre></td></tr></table></figure>
+
+<p>或者：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m esphome config powerboard-test.yaml</span><br></pre></td></tr></table></figure>
+
+<p>该命令会检查：</p>
+<ul>
+<li>YAML 缩进；</li>
+<li>secrets 是否缺失；</li>
+<li>组件配置是否有效；</li>
+<li>OTA 格式是否兼容；</li>
+<li>引脚和平台参数是否存在明显错误。</li>
+</ul>
+<p>正常时会显示类似：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO Configuration is valid!</span><br></pre></td></tr></table></figure>
+
+<p>常见报错如下。</p>
+<h3 id="找不到-secret"><a href="#找不到-secret" class="headerlink" title="找不到 secret"></a>找不到 secret</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Secret &#x27;wifi_ssid&#x27; not defined</span><br></pre></td></tr></table></figure>
+
+<p>处理方法：检查 <code>secrets.yaml</code> 中是否存在同名字段。</p>
+<h3 id="YAML-缩进错误"><a href="#YAML-缩进错误" class="headerlink" title="YAML 缩进错误"></a>YAML 缩进错误</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mapping values are not allowed here</span><br></pre></td></tr></table></figure>
+
+<p>处理方法：检查空格缩进，不要使用 Tab。</p>
+<h3 id="OTA-平台格式过旧"><a href="#OTA-平台格式过旧" class="headerlink" title="OTA 平台格式过旧"></a>OTA 平台格式过旧</h3><p>可能提示 OTA 需要 platform。</p>
+<p>可将：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ota:</span></span><br><span class="line">  <span class="attr">password:</span> <span class="type">!secret</span> <span class="string">ota_password</span></span><br></pre></td></tr></table></figure>
+
+<p>修改为：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ota:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">esphome</span></span><br><span class="line">    <span class="attr">password:</span> <span class="type">!secret</span> <span class="string">ota_password</span></span><br></pre></td></tr></table></figure>
+
+<p>具体以 ESPHome 输出的错误提示为准。</p>
+<hr>
+<h1 id="十二、先单独编译固件"><a href="#十二、先单独编译固件" class="headerlink" title="十二、先单独编译固件"></a>十二、先单独编译固件</h1><p>建议第一次不要直接上传，先确认能够成功编译：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">esphome compile powerboard-test.yaml</span><br></pre></td></tr></table></figure>
+
+<p>或者：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m esphome compile powerboard-test.yaml</span><br></pre></td></tr></table></figure>
+
+<p>第一次编译需要下载工具链和依赖，耗时通常比后续编译长。</p>
+<p>编译成功后，终端会出现类似：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Successfully compiled program.</span><br></pre></td></tr></table></figure>
+
+<p>固件通常位于项目的 <code>.esphome</code> 构建目录内。</p>
+<p>如果编译失败，应先解决配置或依赖问题，不要继续上传。</p>
+<hr>
+<h1 id="十三、通过局域网执行-OTA-上传"><a href="#十三、通过局域网执行-OTA-上传" class="headerlink" title="十三、通过局域网执行 OTA 上传"></a>十三、通过局域网执行 OTA 上传</h1><p>确认插排仍在线后，运行：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">esphome run powerboard-test.yaml</span><br></pre></td></tr></table></figure>
+
+<p>或者：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m esphome run powerboard-test.yaml</span><br></pre></td></tr></table></figure>
+
+<p>编译完成后可能出现多个上传方式：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Found multiple options, please choose one:</span><br><span class="line">[1] 192.168.137.25 (over the air)</span><br><span class="line">[2] COM3 (USB serial)</span><br></pre></td></tr></table></figure>
+
+<p>输入：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<p>然后按回车。</p>
+<p>也可以直接指定 IP，避免选错：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">esphome upload powerboard-test.yaml --device <span class="number">192</span>.<span class="number">168</span>.<span class="number">137</span>.<span class="number">25</span></span><br></pre></td></tr></table></figure>
+
+<p>ESPHome 会先连接设备，再上传固件。</p>
+<p>正常过程可能显示：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Uploading: [=========================] 100%</span><br><span class="line">INFO Upload took ...</span><br><span class="line">INFO OTA successful</span><br></pre></td></tr></table></figure>
+
+<p>上传期间：</p>
+<ul>
+<li>不要关闭命令提示符；</li>
+<li>不要关闭移动热点；</li>
+<li>不要让电脑休眠；</li>
+<li>不要拔掉插排电源；</li>
+<li>不要切换电脑网络；</li>
+<li>不要重启路由器。</li>
+</ul>
+<blockquote>
+<p>[!WARNING]<br>OTA 上传中途断电可能导致设备无法正常启动。部分 ESPHome 设备可以自动回滚或再次进入 OTA，但不能保证所有固件和闪存布局都具备恢复能力。</p>
+</blockquote>
+<hr>
+<h1 id="十四、让插排连接新路由器"><a href="#十四、让插排连接新路由器" class="headerlink" title="十四、让插排连接新路由器"></a>十四、让插排连接新路由器</h1><p>OTA 完成后，插排会自动重启。</p>
+<p>此时新固件中已经写入新的：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">wifi_ssid</span></span><br><span class="line"><span class="string">wifi_password</span></span><br></pre></td></tr></table></figure>
+
+<p>接下来的操作顺序：</p>
+<ol>
+<li>开启新路由器的 2.4GHz Wi‑Fi；</li>
+<li>确认 SSID 和密码与 <code>secrets.yaml</code> 完全一致；</li>
+<li>等待插排重启；</li>
+<li>在新路由器 DHCP 列表中查找插排；</li>
+<li>记录新的 IP 地址。</li>
+</ol>
+<p>如果新路由器把 2.4GHz 和 5GHz 合并为同一名称，通常也可以连接，但部分路由器的智能漫游、WPA3 或特殊加密设置可能导致 ESP8266 连接失败。</p>
+<p>遇到问题时可尝试：</p>
+<ul>
+<li>单独开启 2.4GHz；</li>
+<li>使用 WPA2-PSK；</li>
+<li>暂时关闭 WPA3-only；</li>
+<li>暂时关闭 Wi‑Fi 6 专用模式；</li>
+<li>SSID 不使用生僻字符；</li>
+<li>检查是否启用了 AP 隔离或 MAC 地址过滤。</li>
+</ul>
+<hr>
+<h1 id="十五、删除临时-use-address"><a href="#十五、删除临时-use-address" class="headerlink" title="十五、删除临时 use_address"></a>十五、删除临时 <code>use_address</code></h1><p>确认插排已经连接新路由器后，重新打开 YAML，删除：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">use_address:</span> <span class="number">192.168</span><span class="number">.137</span><span class="number">.25</span></span><br></pre></td></tr></table></figure>
+
+<p>恢复为：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">wifi:</span></span><br><span class="line">  <span class="attr">ssid:</span> <span class="type">!secret</span> <span class="string">wifi_ssid</span></span><br><span class="line">  <span class="attr">password:</span> <span class="type">!secret</span> <span class="string">wifi_password</span></span><br></pre></td></tr></table></figure>
+
+<p>然后再执行一次：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">esphome config powerboard-test.yaml</span><br></pre></td></tr></table></figure>
+
+<p>以后 ESPHome 会优先通过设备名或新 IP 寻找插排。</p>
+<p>如果 <code>.local</code> 解析不稳定，可以在路由器中给插排设置 DHCP 地址保留，让它长期使用固定 IP。</p>
+<hr>
+<h1 id="十六、检查新固件日志"><a href="#十六、检查新固件日志" class="headerlink" title="十六、检查新固件日志"></a>十六、检查新固件日志</h1><p>插排连接新网络后，可以运行：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">esphome logs powerboard-test.yaml</span><br></pre></td></tr></table></figure>
+
+<p>或者指定新 IP：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">esphome logs powerboard-test.yaml --device <span class="number">192</span>.<span class="number">168</span>.<span class="number">1</span>.<span class="number">50</span></span><br></pre></td></tr></table></figure>
+
+<p>重点检查：</p>
+<ul>
+<li>Wi‑Fi 是否连接成功；</li>
+<li>API 是否启动；</li>
+<li>OTA 是否启动；</li>
+<li>继电器是否正常；</li>
+<li>电压、电流和功率数据是否刷新；</li>
+<li>是否反复重启；</li>
+<li>是否出现看门狗、内存不足或异常复位。</li>
+</ul>
+<p>日志中常见信息可能包括：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">WiFi Connected</span><br><span class="line">IP Address: 192.168.1.50</span><br><span class="line">API Server</span><br><span class="line">Over-The-Air Updates</span><br></pre></td></tr></table></figure>
+
+<p>如果设备持续重启，应立即检查：</p>
+<ul>
+<li>新配置是否增加了过多组件；</li>
+<li><code>web_server</code> 是否占用较多内存；</li>
+<li>日志级别是否过高；</li>
+<li>计量芯片 UART 配置是否冲突；</li>
+<li>电源是否稳定；</li>
+<li>固件是否保留了原始板型和闪存参数。</li>
+</ul>
+<hr>
+<h1 id="十七、重新添加到-Home-Assistant"><a href="#十七、重新添加到-Home-Assistant" class="headerlink" title="十七、重新添加到 Home Assistant"></a>十七、重新添加到 Home Assistant</h1><p>如果 YAML 中保留了：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">api:</span></span><br></pre></td></tr></table></figure>
+
+<p>Home Assistant 通常会自动发现设备。</p>
+<p>进入：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">设置</span><br><span class="line">→ 设备与服务</span><br><span class="line">→ 集成</span><br></pre></td></tr></table></figure>
+
+<p>查看是否出现新的 ESPHome 设备。</p>
+<h2 id="出现-SocketClosedAPIError-怎么办"><a href="#出现-SocketClosedAPIError-怎么办" class="headerlink" title="出现 SocketClosedAPIError 怎么办"></a>出现 <code>SocketClosedAPIError</code> 怎么办</h2><p>该错误并不只代表“API Key 被删除”，还可能由以下原因引起：</p>
+<ul>
+<li>Home Assistant 中保存的是旧 API 密码；</li>
+<li>新固件改用了 API 加密密钥；</li>
+<li>新固件删除了 <code>api:</code>；</li>
+<li>Home Assistant 仍在连接旧 IP；</li>
+<li>插排尚未连接新网络；</li>
+<li>API 端口被网络隔离；</li>
+<li>设备持续重启。</li>
+</ul>
+<p>建议按以下顺序处理：</p>
+<ol>
+<li>在 ESPHome 日志中确认设备已经联网；</li>
+<li>确认 YAML 中仍有 <code>api:</code>；</li>
+<li>检查 API 使用密码还是加密密钥；</li>
+<li>在路由器中确认设备新 IP；</li>
+<li>从 Home Assistant 中删除旧的 ESPHome 设备；</li>
+<li>等待自动发现，或手动添加新 IP；</li>
+<li>按新配置填写 API 密码或加密信息。</li>
+</ol>
+<p>如果配置为无密码 API：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">api:</span></span><br></pre></td></tr></table></figure>
+
+<p>重新添加时一般不需要填写密码。</p>
+<p>如果配置为加密 API：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">api:</span></span><br><span class="line">  <span class="attr">encryption:</span></span><br><span class="line">    <span class="attr">key:</span> <span class="type">!secret</span> <span class="string">api_encryption_key</span></span><br></pre></td></tr></table></figure>
+
+<p>Home Assistant 必须使用对应密钥。</p>
+<hr>
+<h1 id="十八、常见故障排查"><a href="#十八、常见故障排查" class="headerlink" title="十八、常见故障排查"></a>十八、常见故障排查</h1><h2 id="1-esphome-不是内部或外部命令"><a href="#1-esphome-不是内部或外部命令" class="headerlink" title="1. esphome 不是内部或外部命令"></a>1. <code>esphome</code> 不是内部或外部命令</h2><p>尝试：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m esphome version</span><br></pre></td></tr></table></figure>
+
+<p>或：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">py -m esphome version</span><br></pre></td></tr></table></figure>
+
+<p>如果仍然失败，重新安装 ESPHome。</p>
+<h2 id="2-安装时出现哈希不匹配"><a href="#2-安装时出现哈希不匹配" class="headerlink" title="2. 安装时出现哈希不匹配"></a>2. 安装时出现哈希不匹配</h2><p>例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">THESE PACKAGES DO NOT MATCH THE HASHES</span><br></pre></td></tr></table></figure>
+
+<p>可执行：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip cache purge</span><br></pre></td></tr></table></figure>
+
+<p>然后重新安装：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install esphome -i https://pypi.tuna.tsinghua.edu.cn/simple --no-cache-<span class="built_in">dir</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-找不到插排-IP"><a href="#3-找不到插排-IP" class="headerlink" title="3. 找不到插排 IP"></a>3. 找不到插排 IP</h2><p>依次检查：</p>
+<ul>
+<li>插排是否通电；</li>
+<li>旧 SSID 和密码是否完全正确；</li>
+<li>热点是否为 2.4GHz；</li>
+<li>电脑和插排是否在同一网络；</li>
+<li>路由器 DHCP 列表；</li>
+<li>Windows 移动热点已连接设备；</li>
+<li><code>arp -a</code>；</li>
+<li><code>ping 设备名.local</code>。</li>
+</ul>
+<h2 id="4-OTA-连接超时"><a href="#4-OTA-连接超时" class="headerlink" title="4. OTA 连接超时"></a>4. OTA 连接超时</h2><p>可能原因：</p>
+<ul>
+<li>IP 写错；</li>
+<li><code>use_address</code> 指向旧地址；</li>
+<li>Windows 防火墙拦截；</li>
+<li>插排和电脑不在同一子网；</li>
+<li>AP 隔离阻止设备互访；</li>
+<li>旧固件没有 OTA；</li>
+<li>OTA 密码不正确；</li>
+<li>设备正在不断重启。</li>
+</ul>
+<h2 id="5-显示认证失败"><a href="#5-显示认证失败" class="headerlink" title="5. 显示认证失败"></a>5. 显示认证失败</h2><p>通常是 OTA 密码错误。</p>
+<p>OTA 验证使用的是<strong>旧固件当前保存的 OTA 密码</strong>。即使新 YAML 中填写了新密码，本次上传时仍必须先通过旧密码认证。</p>
+<p>更稳妥的做法是：</p>
+<ol>
+<li>第一次迁移 Wi‑Fi 时保持 OTA 密码不变；</li>
+<li>确认新网络工作正常；</li>
+<li>再单独修改 OTA 密码并进行第二次上传。</li>
+</ol>
+<h2 id="6-编译成功但上传后无法联网"><a href="#6-编译成功但上传后无法联网" class="headerlink" title="6. 编译成功但上传后无法联网"></a>6. 编译成功但上传后无法联网</h2><p>检查：</p>
+<ul>
+<li>新 Wi‑Fi 是否为 2.4GHz；</li>
+<li>SSID 和密码是否有错；</li>
+<li>YAML 是否引用了正确的 secrets；</li>
+<li>新路由器是否只允许 WPA3；</li>
+<li>是否开启 MAC 白名单；</li>
+<li>是否设置了不正确的静态 IP；</li>
+<li>网关、子网掩码和 DNS 是否正确。</li>
+</ul>
+<p>如果仍保留旧网络，可以临时恢复旧热点，让设备重新上线后再次修改。</p>
+<h2 id="7-插排在-Home-Assistant-中离线，但-OTA-正常"><a href="#7-插排在-Home-Assistant-中离线，但-OTA-正常" class="headerlink" title="7. 插排在 Home Assistant 中离线，但 OTA 正常"></a>7. 插排在 Home Assistant 中离线，但 OTA 正常</h2><p>说明 Wi‑Fi 和 OTA 可能正常，问题集中在 API。</p>
+<p>检查：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">api:</span></span><br></pre></td></tr></table></figure>
+
+<p>是否存在，以及密码或加密密钥是否与 Home Assistant 一致。</p>
+<h2 id="8-功率、电压或电流数值异常"><a href="#8-功率、电压或电流数值异常" class="headerlink" title="8. 功率、电压或电流数值异常"></a>8. 功率、电压或电流数值异常</h2><p>不要随意修改 SY7T609 的 UART、引脚和校准参数。</p>
+<p>如果只是换 Wi‑Fi，应保留原来的计量配置。数值异常时优先恢复原始 YAML 对比。</p>
+<hr>
+<h1 id="十九、推荐的配置维护方式"><a href="#十九、推荐的配置维护方式" class="headerlink" title="十九、推荐的配置维护方式"></a>十九、推荐的配置维护方式</h1><h2 id="1-保存三份文件"><a href="#1-保存三份文件" class="headerlink" title="1. 保存三份文件"></a>1. 保存三份文件</h2><p>建议长期保存：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">powerboard-original.yaml</span><br><span class="line">powerboard-current.yaml</span><br><span class="line">secrets.yaml</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li><code>original</code>：第一次可正常运行的原始配置；</li>
+<li><code>current</code>：当前使用的配置；</li>
+<li><code>secrets.yaml</code>：密码和密钥。</li>
+</ul>
+<h2 id="2-给配置添加版本注释"><a href="#2-给配置添加版本注释" class="headerlink" title="2. 给配置添加版本注释"></a>2. 给配置添加版本注释</h2><p>例如：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设备：中移铁通插排 SY7T609</span></span><br><span class="line"><span class="comment"># 芯片：ESP8266</span></span><br><span class="line"><span class="comment"># 配置日期：2026-06-18</span></span><br><span class="line"><span class="comment"># 修改内容：迁移至新 Wi-Fi</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-不公开真实-secrets"><a href="#3-不公开真实-secrets" class="headerlink" title="3. 不公开真实 secrets"></a>3. 不公开真实 secrets</h2><p>公开博客时使用：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">wifi_ssid:</span> <span class="string">&quot;你的 Wi-Fi 名称&quot;</span></span><br><span class="line"><span class="attr">wifi_password:</span> <span class="string">&quot;你的 Wi-Fi 密码&quot;</span></span><br><span class="line"><span class="attr">ota_password:</span> <span class="string">&quot;你的 OTA 密码&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-在路由器中固定-IP"><a href="#4-在路由器中固定-IP" class="headerlink" title="4. 在路由器中固定 IP"></a>4. 在路由器中固定 IP</h2><p>不要直接依赖设备每次随机获得的 DHCP 地址。</p>
+<p>可以在路由器后台根据插排 MAC 地址设置 DHCP 静态租约，例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.168.1.50</span><br></pre></td></tr></table></figure>
+
+<p>以后查看日志和 OTA 会更方便。</p>
+<h2 id="5-保留恢复方案"><a href="#5-保留恢复方案" class="headerlink" title="5. 保留恢复方案"></a>5. 保留恢复方案</h2><p>在固件资源允许的情况下，可以保留：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">wifi:</span></span><br><span class="line">  <span class="attr">ap:</span></span><br><span class="line">    <span class="attr">ssid:</span> <span class="string">&quot;Powerboard Fallback&quot;</span></span><br><span class="line">    <span class="attr">password:</span> <span class="type">!secret</span> <span class="string">ap_password</span></span><br><span class="line"></span><br><span class="line"><span class="attr">captive_portal:</span></span><br></pre></td></tr></table></figure>
+
+<p>如果为了稳定性必须删除备用热点，则至少保存：</p>
+<ul>
+<li>当前 YAML；</li>
+<li>OTA 密码；</li>
+<li>API 密码或加密密钥；</li>
+<li>当前 Wi‑Fi 信息；</li>
+<li>串口引脚资料；</li>
+<li>首次线刷方法。</li>
+</ul>
+<hr>
+<h1 id="二十、一套推荐的迁移流程"><a href="#二十、一套推荐的迁移流程" class="headerlink" title="二十、一套推荐的迁移流程"></a>二十、一套推荐的迁移流程</h1><p>为了降低失败风险，建议按下面的顺序操作：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1. 备份原始 YAML 和 secrets</span><br><span class="line">2. 安装并检查 ESPHome</span><br><span class="line">3. 恢复旧路由器或模拟旧热点</span><br><span class="line">4. 找到插排当前 IP</span><br><span class="line">5. 只修改新 Wi-Fi 信息</span><br><span class="line">6. 临时加入 use_address</span><br><span class="line">7. 保持旧 OTA 密码不变</span><br><span class="line">8. 运行 esphome config</span><br><span class="line">9. 运行 esphome compile</span><br><span class="line">10. 指定旧 IP 执行 OTA</span><br><span class="line">11. 在新路由器中确认插排上线</span><br><span class="line">12. 查看设备日志</span><br><span class="line">13. 删除 use_address</span><br><span class="line">14. 重新添加 Home Assistant</span><br><span class="line">15. 备份最终配置</span><br></pre></td></tr></table></figure>
+
+<p>这套流程的关键原则是：</p>
+<blockquote>
+<p><strong>一次只改一个关键变量。</strong></p>
+</blockquote>
+<p>第一次只迁移 Wi‑Fi，不要同时修改 OTA 密码、API 加密、芯片平台、引脚、计量参数和功能组件。确认设备在新网络稳定运行后，再进行其他调整。</p>
+<hr>
+<h1 id="二十一、最终命令速查"><a href="#二十一、最终命令速查" class="headerlink" title="二十一、最终命令速查"></a>二十一、最终命令速查</h1><p>安装 ESPHome：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install esphome -i https://pypi.tuna.tsinghua.edu.cn/simple --no-cache-<span class="built_in">dir</span></span><br></pre></td></tr></table></figure>
+
+<p>查看版本：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">esphome version</span><br></pre></td></tr></table></figure>
+
+<p>检查配置：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">esphome config powerboard-test.yaml</span><br></pre></td></tr></table></figure>
+
+<p>编译：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">esphome compile powerboard-test.yaml</span><br></pre></td></tr></table></figure>
+
+<p>查看旧地址日志：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">esphome logs powerboard-test.yaml --device <span class="number">192</span>.<span class="number">168</span>.<span class="number">137</span>.<span class="number">25</span></span><br></pre></td></tr></table></figure>
+
+<p>直接上传到旧地址：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">esphome upload powerboard-test.yaml --device <span class="number">192</span>.<span class="number">168</span>.<span class="number">137</span>.<span class="number">25</span></span><br></pre></td></tr></table></figure>
+
+<p>编译并上传：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">esphome run powerboard-test.yaml</span><br></pre></td></tr></table></figure>
+
+<p>查看新地址日志：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">esphome logs powerboard-test.yaml --device <span class="number">192</span>.<span class="number">168</span>.<span class="number">1</span>.<span class="number">50</span></span><br></pre></td></tr></table></figure>
+
+<p>如果 <code>esphome</code> 命令无法识别，在前面增加：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m esphome run powerboard-test.yaml</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="二十二、总结"><a href="#二十二、总结" class="headerlink" title="二十二、总结"></a>二十二、总结</h1><p>中移铁通 SY7T609 插排更换 Wi‑Fi 的难点，不在于重新编译固件，而在于如何让旧固件保持在线，并建立一次可用的 OTA 通道。</p>
+<p>只要满足以下三个条件：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">插排还能连接旧网络；</span><br><span class="line">旧固件保留 OTA；</span><br><span class="line">旧 OTA 密码仍然可用；</span><br></pre></td></tr></table></figure>
+
+<p>就可以完全绕过 Home Assistant 插件，在 Windows 本地完成：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">修改配置</span><br><span class="line">→ 编译固件</span><br><span class="line">→ 无线上传</span><br><span class="line">→ 切换新 Wi-Fi</span><br><span class="line">→ 重新接入 Home Assistant</span><br></pre></td></tr></table></figure>
+
+<p>真正需要注意的是：</p>
+<ul>
+<li><code>use_address</code> 只用于本次迁移；</li>
+<li>第一次迁移不要同时修改 OTA 密码；</li>
+<li>API 与 OTA 是两套不同功能；</li>
+<li>清华 PyPI 镜像不等于所有编译依赖都走国内镜像；</li>
+<li>无法 OTA 时才考虑拆机串口刷写；</li>
+<li>串口操作必须断开市电并使用 3.3V 电平；</li>
+<li>公开配置前必须清除全部真实密码和密钥。</li>
+</ul>
+<p>完成迁移后，记得删除临时地址、固定新 IP，并备份最终可用的 YAML 配置。下一次再更换路由器时，就不需要重新经历整套排查过程了。</p>
+</article>
+<div class="article-footer">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+
+</div>
+
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2026/05/30/%E8%8D%A3%E6%82%A6E5%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/">荣悦E5刷机教程</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>有问题请留言</p>
+
+    </section>
+    <section class='body cmt-body twikoo'>
+      
+
+<div id="twikoo_container"><svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg></div>
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">奕阡</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1">Stellar 1.33.1</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#20-%E5%85%83%E4%B8%AD%E7%A7%BB%E9%93%81%E9%80%9A%E6%8F%92%E6%8E%92%EF%BC%88SY7T609%EF%BC%89%EF%BC%9A%E8%84%B1%E7%A6%BB-Home-Assistant%EF%BC%8C%E4%BD%BF%E7%94%A8-Windows-%E6%9C%AC%E5%9C%B0-ESPHome-%E6%9B%B4%E6%8D%A2-Wi%E2%80%91Fi-%E4%B8%8E-OTA-%E5%88%B7%E6%9C%BA"><span class="toc-text">20 元中移铁通插排（SY7T609）：脱离 Home Assistant，使用 Windows 本地 ESPHome 更换 Wi‑Fi 与 OTA 刷机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%85%88%E5%88%A4%E6%96%AD%E8%83%BD%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8-OTA-%E6%96%B9%E6%B3%95"><span class="toc-text">一、先判断能不能使用 OTA 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E6%9C%AC%E6%96%87%E6%96%B9%E6%B3%95%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-text">可以使用本文方法的情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E8%83%BD%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8-OTA-%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-text">不能直接使用 OTA 的情况</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%9C%80%E8%A6%81%E5%87%86%E5%A4%87%E7%9A%84%E6%96%87%E4%BB%B6%E5%92%8C%E5%B7%A5%E5%85%B7"><span class="toc-text">二、需要准备的文件和工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6"><span class="toc-text">硬件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6"><span class="toc-text">软件和文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%9C%A8-Windows-%E4%B8%AD%E5%AE%89%E8%A3%85-Python"><span class="toc-text">三、在 Windows 中安装 Python</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AE%89%E8%A3%85-Python"><span class="toc-text">1. 安装 Python</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%89%E8%A3%85-ESPHome"><span class="toc-text">四、安装 ESPHome</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BD%BF%E7%94%A8%E6%B8%85%E5%8D%8E-PyPI-%E9%95%9C%E5%83%8F%E5%AE%89%E8%A3%85"><span class="toc-text">1. 使用清华 PyPI 镜像安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%BB%BA%E8%AE%AE%E4%BD%BF%E7%94%A8%E7%8B%AC%E7%AB%8B%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-text">2. 建议使用独立虚拟环境</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%BB%BA%E7%AB%8B%E9%85%8D%E7%BD%AE%E7%9B%AE%E5%BD%95"><span class="toc-text">五、建立配置目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%A3%80%E6%9F%A5-YAML-%E4%B8%AD%E4%BD%BF%E7%94%A8%E4%BA%86%E5%93%AA%E4%BA%9B-secrets"><span class="toc-text">六、检查 YAML 中使用了哪些 secrets</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E8%AE%A9%E6%8F%92%E6%8E%92%E4%B8%B4%E6%97%B6%E5%9B%9E%E5%88%B0%E6%97%A7%E7%BD%91%E7%BB%9C"><span class="toc-text">七、让插排临时回到旧网络</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%83%85%E5%86%B5-A%EF%BC%9A%E6%97%A7%E8%B7%AF%E7%94%B1%E5%99%A8%E8%BF%98%E5%9C%A8"><span class="toc-text">情况 A：旧路由器还在</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%83%85%E5%86%B5-B%EF%BC%9A%E6%97%A7%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B7%B2%E7%BB%8F%E6%8B%86%E9%99%A4"><span class="toc-text">情况 B：旧路由器已经拆除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BF%AE%E6%94%B9%E7%94%B5%E8%84%91%E7%A7%BB%E5%8A%A8%E7%83%AD%E7%82%B9"><span class="toc-text">1. 修改电脑移动热点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%90%AF%E5%8A%A8%E7%83%AD%E7%82%B9%E5%B9%B6%E7%BB%99%E6%8F%92%E6%8E%92%E9%80%9A%E7%94%B5"><span class="toc-text">2. 启动热点并给插排通电</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9F%A5%E6%89%BE%E6%8F%92%E6%8E%92%E7%9A%84%E4%B8%B4%E6%97%B6-IP"><span class="toc-text">3. 查找插排的临时 IP</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E5%85%88%E6%B5%8B%E8%AF%95%E6%8F%92%E6%8E%92%E6%98%AF%E5%90%A6%E5%9C%A8%E7%BA%BF"><span class="toc-text">八、先测试插排是否在线</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E5%9C%A8-YAML-%E4%B8%AD%E4%B8%B4%E6%97%B6%E6%8C%87%E5%AE%9A%E6%97%A7%E5%9C%B0%E5%9D%80"><span class="toc-text">九、在 YAML 中临时指定旧地址</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E6%A3%80%E6%9F%A5-API-%E5%92%8C-OTA-%E9%85%8D%E7%BD%AE"><span class="toc-text">十、检查 API 和 OTA 配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-OTA-%E9%85%8D%E7%BD%AE%E4%B8%8D%E8%83%BD%E8%A2%AB%E5%88%A0%E9%99%A4"><span class="toc-text">1. OTA 配置不能被删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-API-%E4%B8%8E-OTA-%E4%B8%8D%E6%98%AF%E5%90%8C%E4%B8%80%E5%8A%9F%E8%83%BD"><span class="toc-text">2. API 与 OTA 不是同一功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%B8%8D%E5%BB%BA%E8%AE%AE%E4%B8%BA%E4%BA%86%E8%8A%82%E7%9C%81%E5%86%85%E5%AD%98%E7%9B%B4%E6%8E%A5%E5%88%A0%E9%99%A4%E5%85%A8%E9%83%A8%E6%81%A2%E5%A4%8D%E9%80%9A%E9%81%93"><span class="toc-text">3. 不建议为了节省内存直接删除全部恢复通道</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E9%AA%8C%E8%AF%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">十一、验证配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%BE%E4%B8%8D%E5%88%B0-secret"><span class="toc-text">找不到 secret</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#YAML-%E7%BC%A9%E8%BF%9B%E9%94%99%E8%AF%AF"><span class="toc-text">YAML 缩进错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OTA-%E5%B9%B3%E5%8F%B0%E6%A0%BC%E5%BC%8F%E8%BF%87%E6%97%A7"><span class="toc-text">OTA 平台格式过旧</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E5%85%88%E5%8D%95%E7%8B%AC%E7%BC%96%E8%AF%91%E5%9B%BA%E4%BB%B6"><span class="toc-text">十二、先单独编译固件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E4%B8%89%E3%80%81%E9%80%9A%E8%BF%87%E5%B1%80%E5%9F%9F%E7%BD%91%E6%89%A7%E8%A1%8C-OTA-%E4%B8%8A%E4%BC%A0"><span class="toc-text">十三、通过局域网执行 OTA 上传</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E5%9B%9B%E3%80%81%E8%AE%A9%E6%8F%92%E6%8E%92%E8%BF%9E%E6%8E%A5%E6%96%B0%E8%B7%AF%E7%94%B1%E5%99%A8"><span class="toc-text">十四、让插排连接新路由器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E4%BA%94%E3%80%81%E5%88%A0%E9%99%A4%E4%B8%B4%E6%97%B6-use-address"><span class="toc-text">十五、删除临时 use_address</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E5%85%AD%E3%80%81%E6%A3%80%E6%9F%A5%E6%96%B0%E5%9B%BA%E4%BB%B6%E6%97%A5%E5%BF%97"><span class="toc-text">十六、检查新固件日志</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E4%B8%83%E3%80%81%E9%87%8D%E6%96%B0%E6%B7%BB%E5%8A%A0%E5%88%B0-Home-Assistant"><span class="toc-text">十七、重新添加到 Home Assistant</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BA%E7%8E%B0-SocketClosedAPIError-%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="toc-text">出现 SocketClosedAPIError 怎么办</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E5%85%AB%E3%80%81%E5%B8%B8%E8%A7%81%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5"><span class="toc-text">十八、常见故障排查</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-esphome-%E4%B8%8D%E6%98%AF%E5%86%85%E9%83%A8%E6%88%96%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">1. esphome 不是内部或外部命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85%E6%97%B6%E5%87%BA%E7%8E%B0%E5%93%88%E5%B8%8C%E4%B8%8D%E5%8C%B9%E9%85%8D"><span class="toc-text">2. 安装时出现哈希不匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%89%BE%E4%B8%8D%E5%88%B0%E6%8F%92%E6%8E%92-IP"><span class="toc-text">3. 找不到插排 IP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-OTA-%E8%BF%9E%E6%8E%A5%E8%B6%85%E6%97%B6"><span class="toc-text">4. OTA 连接超时</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%98%BE%E7%A4%BA%E8%AE%A4%E8%AF%81%E5%A4%B1%E8%B4%A5"><span class="toc-text">5. 显示认证失败</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E7%BC%96%E8%AF%91%E6%88%90%E5%8A%9F%E4%BD%86%E4%B8%8A%E4%BC%A0%E5%90%8E%E6%97%A0%E6%B3%95%E8%81%94%E7%BD%91"><span class="toc-text">6. 编译成功但上传后无法联网</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%8F%92%E6%8E%92%E5%9C%A8-Home-Assistant-%E4%B8%AD%E7%A6%BB%E7%BA%BF%EF%BC%8C%E4%BD%86-OTA-%E6%AD%A3%E5%B8%B8"><span class="toc-text">7. 插排在 Home Assistant 中离线，但 OTA 正常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%8A%9F%E7%8E%87%E3%80%81%E7%94%B5%E5%8E%8B%E6%88%96%E7%94%B5%E6%B5%81%E6%95%B0%E5%80%BC%E5%BC%82%E5%B8%B8"><span class="toc-text">8. 功率、电压或电流数值异常</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%81%E4%B9%9D%E3%80%81%E6%8E%A8%E8%8D%90%E7%9A%84%E9%85%8D%E7%BD%AE%E7%BB%B4%E6%8A%A4%E6%96%B9%E5%BC%8F"><span class="toc-text">十九、推荐的配置维护方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BF%9D%E5%AD%98%E4%B8%89%E4%BB%BD%E6%96%87%E4%BB%B6"><span class="toc-text">1. 保存三份文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%BB%99%E9%85%8D%E7%BD%AE%E6%B7%BB%E5%8A%A0%E7%89%88%E6%9C%AC%E6%B3%A8%E9%87%8A"><span class="toc-text">2. 给配置添加版本注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%B8%8D%E5%85%AC%E5%BC%80%E7%9C%9F%E5%AE%9E-secrets"><span class="toc-text">3. 不公开真实 secrets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%9C%A8%E8%B7%AF%E7%94%B1%E5%99%A8%E4%B8%AD%E5%9B%BA%E5%AE%9A-IP"><span class="toc-text">4. 在路由器中固定 IP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E4%BF%9D%E7%95%99%E6%81%A2%E5%A4%8D%E6%96%B9%E6%A1%88"><span class="toc-text">5. 保留恢复方案</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E5%8D%81%E3%80%81%E4%B8%80%E5%A5%97%E6%8E%A8%E8%8D%90%E7%9A%84%E8%BF%81%E7%A7%BB%E6%B5%81%E7%A8%8B"><span class="toc-text">二十、一套推荐的迁移流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%80%E3%80%81%E6%9C%80%E7%BB%88%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5"><span class="toc-text">二十一、最终命令速查</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E5%8D%81%E4%BA%8C%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-text">二十二、总结</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a><a class="buttom" onclick="util.scrollComment()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 10.5h8M8 14h5.5M17 3.338A9.95 9.95 0 0 0 12 2C6.477 2 2 6.477 2 12c0 1.6.376 3.112 1.043 4.453c.178.356.237.763.134 1.148l-.595 2.226a1.3 1.3 0 0 0 1.591 1.592l2.226-.596a1.63 1.63 0 0 1 1.149.133A9.96 9.96 0 0 0 12 22c5.523 0 10-4.477 10-10c0-1.821-.487-3.53-1.338-5"/></svg><span>参与讨论</span></a></div></widget>
+</div></aside><div class='float-panel'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+
+
+<script type="text/javascript">
+  window.canonical = {"originalHost":null,"officialHosts":["localhost"],"encoded":""};
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+    tag_plugins: {
+      chat: Object.assign({"api":"https://siteinfo.listentothewind.cn/api/v1"}),
+    }
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"skip_search":null,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+    loading: `https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd`,
+  };
+  const deps = {
+    jquery: `https://gcore.jsdelivr.net/npm/jquery@3.7/dist/jquery.min.js`,
+    marked: `https://gcore.jsdelivr.net/npm/marked@13.0/lib/marked.umd.min.js`,
+    lazyload: `/%5Bobject%20Object%5D`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  
+  function RunItem() {
+    this.list = []; // 存放回调函数
+    this.start = () => {
+      for (var i = 0; i < this.list.length; i++) {
+        this.list[i].run();
+      }
+    };
+    this.push = (fn, name, setRequestAnimationFrame = true) => {
+      let myfn = fn
+      if (setRequestAnimationFrame) {
+        myfn = () => {
+          utils.requestAnimationFrame(fn)
+        }
+      }
+      var f = new Item(myfn, name);
+      this.list.push(f);
+    };
+    this.remove = (name) => {
+      for (let index = 0; index < this.list.length; index++) {
+        const e = this.list[index];
+        if (e.name == name) {
+          this.list.splice(index, 1);
+        }
+      }
+    }
+    // 构造一个可以run的对象
+    function Item(fn, name) {
+      // 函数名称
+      this.name = name || fn.name;
+      // run方法
+      this.run = () => {
+        try {
+          fn()
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    }
+  }
+
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')) {
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function () {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      const maxRetry = 3;
+      let retryCount = 0;
+
+      return new Promise((resolve, reject) => {
+        const load = () => {
+          utils.onLoading?.(el);
+
+          let timedOut = false;
+          const timeout = setTimeout(() => {
+            timedOut = true;
+            console.warn('[request] 超时:', url);
+
+            if (++retryCount >= maxRetry) {
+              utils.onLoadFailure?.(el);
+              onFailure?.();
+              reject('请求超时');
+            } else {
+              setTimeout(load, 1000);
+            }
+          }, 5000);
+
+          fetch(url).then(resp => {
+            if (timedOut) return;
+            clearTimeout(timeout);
+
+            if (!resp.ok) throw new Error('响应失败');
+            return resp;
+          }).then(data => {
+            if (timedOut) return;
+            utils.onLoadSuccess?.(el);
+            callback(data);
+            resolve(data);
+          }).catch(err => {
+            clearTimeout(timeout);
+            console.warn('[request] 错误:', err);
+
+            if (++retryCount >= maxRetry) {
+              utils.onLoadFailure?.(el);
+              onFailure?.();
+              reject(err);
+            } else {
+              setTimeout(load, 1000);
+            }
+          });
+        };
+
+        load();
+      });
+    },
+    requestWithoutLoading: (url, options = {}, maxRetry = 2, timeout = 5000) => {
+      return new Promise((resolve, reject) => {
+        let retryCount = 0;
+
+        const tryRequest = () => {
+          let timedOut = false;
+          const timer = setTimeout(() => {
+            timedOut = true;
+            if (++retryCount > maxRetry) reject('timeout');
+            else tryRequest();
+          }, timeout);
+
+          fetch(url, options)
+            .then(resp => {
+              clearTimeout(timer);
+              if (!resp.ok) throw new Error('bad response');
+              resolve(resp);
+            })
+            .catch(err => {
+              clearTimeout(timer);
+              if (++retryCount > maxRetry) reject(err);
+              else setTimeout(tryRequest, 500);
+            });
+        };
+
+        tryRequest();
+      });
+    },
+    /********************** requestAnimationFrame ********************************/
+    // 1、requestAnimationFrame 会把每一帧中的所有 DOM 操作集中起来，在一次重绘或回流中就完成，并且重绘或回流的时间间隔紧紧跟随浏览器的刷新频率，一般来说，这个频率为每秒60帧。
+    // 2、在隐藏或不可见的元素中，requestAnimationFrame 将不会进行重绘或回流，这当然就意味着更少的的 cpu，gpu 和内存使用量。
+    requestAnimationFrame: (fn) => {
+      if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
+      }
+      window.requestAnimationFrame(fn)
+    },
+    dark: {},
+  };
+
+  // utils.dark.mode 当前模式 dark or light
+  // utils.dark.toggle() 暗黑模式触发器
+  // utils.dark.push(callBack[,"callBackName"]) 传入触发器回调函数
+  utils.dark.method = {
+    toggle: new RunItem(),
+  };
+  utils.dark = Object.assign(utils.dark, {
+    push: utils.dark.method.toggle.push,
+  });
+</script>
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+<script type="text/javascript">
+  (() => {
+    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
+    for (const tagSwitcher of tagSwitchers) {
+      tagSwitcher.addEventListener('click', (e) => {
+        const parent = e.target.closest('.tag-subtree.parent-tag')
+        parent.classList.toggle('expanded')
+        e.preventDefault()
+      })
+    }
+
+    // Get active tag from query string, then activate it.
+    const urlParams = new URLSearchParams(window.location.search)
+    const activeTag = urlParams.get('tag')
+    if (activeTag) {
+      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
+      if (tag) {
+        tag.querySelector('a').classList.add('active')
+        
+        while (tag) {
+          tag.classList.add('expanded')
+          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
+        }
+      }
+    }
+  })()
+</script>
+
+<script async src="https://gcore.jsdelivr.net/npm/vanilla-lazyload@19.1/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+    callback_loaded: (el) => {
+      el.classList.add('loaded');
+      const wrapper = el.closest('.lazy-box');
+      const icon = wrapper?.querySelector('.lazy-icon');
+      if (icon) icon.remove();
+    }
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+
+  window.wrapLazyloadImages = (container) => {
+    if (typeof container === 'string') {
+      container = document.querySelector(container);
+    }
+    if (!container) return;
+    
+    const images = container.querySelectorAll('img');
+    images.forEach((img) => {
+      if (img.classList.contains('lazy')) return;
+
+      const src = img.getAttribute('src');
+      if (!src) return;
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'lazy-box';
+
+      const newImg = img.cloneNode();
+      newImg.removeAttribute('src');
+      newImg.setAttribute('data-src', src);
+      newImg.classList.add('lazy');
+
+      const icon = document.createElement('div');
+      icon.className = 'lazy-icon';
+      if (def.loading) {
+        icon.style.backgroundImage = `url("${def.loading}")`;
+      }
+
+      wrapper.appendChild(newImg);
+      wrapper.appendChild(icon);
+
+      img.replaceWith(wrapper);
+    });
+
+    // 通知 LazyLoad 更新
+    if (window.lazyLoadInstance?.update) {
+      window.lazyLoadInstance.update();
+    }
+  }
+  
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.33.1" defer></script>
+
+<script type="text/javascript">
+  const applyTheme = (theme) => {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    // applyThemeToGiscus(theme)
+  }
+
+  // FIXME: 这会导致无法使用 preferred_color_scheme 以外的主题
+  const applyThemeToGiscus = (theme) => {
+    // theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+    const cmt = document.getElementById('giscus')
+    if (cmt) {
+      // This works before giscus load.
+      cmt.setAttribute('data-theme', theme)
+    }
+
+    const iframe = document.querySelector('#comments > section.giscus > iframe')
+    if (iframe) {
+      // This works after giscus loaded.
+      const src = iframe.src
+      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
+      iframe.src = newSrc
+    }
+  }
+
+  const switchTheme = () => {
+    // light -> dark -> auto -> light -> ...
+    const currentTheme = document.documentElement.getAttribute('data-theme')
+    let newTheme;
+    switch (currentTheme) {
+      case 'light':
+        newTheme = 'dark'
+        break
+      case 'dark':
+        newTheme = 'auto'
+        break
+      default:
+        newTheme = 'light'
+    }
+    applyTheme(newTheme)
+    window.localStorage.setItem('Stellar.theme', newTheme)
+    utils.dark.mode = newTheme === 'auto' ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : newTheme;
+    utils.dark.method.toggle.start();
+
+    const messages = {
+      light: `切换到浅色模式`,
+      dark: `切换到深色模式`,
+      auto: `切换到跟随系统配色`,
+    }
+    hud?.toast?.(messages[newTheme])
+  }
+
+  (() => {
+    // Apply user's preferred theme, if any.
+    const theme = window.localStorage.getItem('Stellar.theme')
+    if (theme !== null) {
+      applyTheme(theme)
+    } else {
+      utils.dark.mode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    utils.dark.method.toggle.start();
+  })()
+</script>
+
+
+<!-- optional -->
+
+  <script type="module">
+  const el = document.getElementById('twikoo_container');
+  util.viewportLazyload(el, load_twikoo, false);
+
+  function load_twikoo() {
+    if (!el) return;
+    utils.js('https://gcore.jsdelivr.net/npm/twikoo@1.6/dist/twikoo.all.min.js', {defer: true}).then(function () {
+      const path = el.getAttribute('comment_id') ?? decodeURI(window.location.pathname);
+      twikoo.init(Object.assign({"js":"https://gcore.jsdelivr.net/npm/twikoo@1.6/dist/twikoo.all.min.js","envId":"https://123-gamma-three.vercel.app/"}, {
+        el: '#twikoo_container',
+        path: path,
+      }));
+    });
+  }
+</script>
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"rating":{"js":"/js/services/rating.js","api":"https://star-vote.xaox.cc/api/rating"},"vote":{"js":"/js/services/vote.js","api":"https://star-vote.xaox.cc/api/vote"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"friends_and_posts":{"js":"/js/services/friends_and_posts.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"},"voice":{"js":"/js/plugins/voice.js"},"video":{"js":"/js/plugins/video.js"},"download-file":{"js":"/js/plugins/download-file.js"},"twikoo":{"js":"/js/services/twikoo_latest_comment.js"},"waline":{"js":"/js/services/waline_latest_comment.js"},"artalk":{"js":"/js/services/artalk_latest_comment.js"},"giscus":{"js":"/js/services/giscus_latest_comment.js"},"contributors":{"edit_this_page":{"_posts/":null,"wiki/stellar/":"https://github.com/xaoxuu/hexo-theme-stellar-docs/blob/main/"},"js":"/js/services/contributors.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else if (id == 'voice') {
+        ctx.voiceAudios = document.querySelectorAll('.voice>audio');
+        if (ctx.voiceAudios?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            createVoiceDom(ctx.voiceAudios);
+          });
+        }
+      } else if (id == 'video') {
+        ctx.videos = document.querySelectorAll('.video>video');
+        if (ctx.videos?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            videoEvents(ctx.videos);
+          });
+        }
+      } else if (id == 'download-file') {
+        ctx.files = document.querySelectorAll('.file');
+        if (ctx.files?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            downloadFileEvent(ctx.files);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+
+    // chat iphone time
+    let phoneTimes = document.querySelectorAll('.chat .status-bar .time');
+
+    if (phoneTimes.length > 0) {
+      NowTime();
+      var date = new Date();
+      var sec = date.getSeconds();
+      var firstAdjustInterval = setInterval(firstAdjustTime, 1000 * (60 - sec));
+    }
+
+    function firstAdjustTime() {
+      NowTime();
+      clearInterval(firstAdjustInterval);
+      setInterval(NowTime, 1000 * 60);
+    }
+
+    function NowTime() {
+      for (let i = 0; i < phoneTimes.length; ++i) {
+        var timeSpan = phoneTimes[i];
+        var date = new Date();
+        var hour = date.getHours();
+        var min = date.getMinutes();
+        timeSpan.innerHTML = check(hour) + ":" + check(min);
+      }
+    };
+
+    function check(val) {
+      if (val < 10) {
+        return ("0" + val);
+      }
+      return (val);
+    }
+
+    // chat quote
+    const chat_quote_obverser = new IntersectionObserver((entries, observer) => {
+      entries.filter((entry) => { return entry.isIntersecting }).sort((a, b) => a.intersectionRect.y !== b.intersectionRect.y ? a.intersectionRect.y - b.intersectionRect.y : a.intersectionRect.x - b.intersectionRect.x).forEach((entry, index) => {
+          observer.unobserve(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add('quote-blink');
+            setTimeout(() => {
+              entry.target.classList.remove('quote-blink');
+            }, 1000);
+          }, Math.max(100, 16) * (index + 1));
+        });
+    });
+
+    var chatQuotes = document.querySelectorAll(".chat .talk .quote");
+    chatQuotes.forEach((quote) => {
+      quote.addEventListener('click', function () {
+        var chatCellDom = document.getElementById("quote-" + quote.getAttribute("quotedCellTag"));
+        if (chatCellDom) {
+          var chatDiv = chatCellDom.parentElement;
+          var mid = chatDiv.clientHeight / 2;
+          var offsetTop = chatCellDom.offsetTop;
+          if (offsetTop > mid - chatCellDom.clientHeight / 2) {
+            chatDiv.scrollTo({
+              top: chatCellDom.offsetTop - mid + chatCellDom.clientHeight / 2,
+              behavior: "smooth"
+            });
+          } else {
+            chatDiv.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            });
+          }
+          chat_quote_obverser.observe(chatCellDom);
+        }
+      });
+    });
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://gcore.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
+    js: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
+  };
+  var selector = '[data-fancybox]:not(.error), .with-fancybox .atk-content img:not([atk-emoticon])';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const memos = document.getElementsByClassName('ds-memos');
+    if (memos != undefined && memos.length > 0) {
+      needFancybox = true;
+    }
+    const fancybox = document.getElementsByClassName('with-fancybox');
+    if (fancybox != undefined && fancybox.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
+        }
+      });
+    })
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          rewind: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+
+</div></body></html>
